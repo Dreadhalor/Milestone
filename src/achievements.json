@@ -1,0 +1,84 @@
+{
+  "achievements": [
+    {
+      "id": "rename_file",
+      "title": "The Rename-issance",
+      "description": "Rename a file or folder"
+    },
+    {
+      "id": "file_into_file",
+      "title": "Inception",
+      "description": "Move a file into a file"
+    },
+    {
+      "id": "name_conflict",
+      "title": "The Name Game",
+      "description": "Attempt to rename a file the same name as another file"
+    },
+    {
+      "id": "upload_file",
+      "title": "The Uploader",
+      "description": "Upload a file"
+    },
+    {
+      "id": "create_folder",
+      "title": "The Folder Creator",
+      "description": "Create a folder"
+    },
+    {
+      "id": "delete_file",
+      "title": "The Deleter",
+      "description": "Delete a file"
+    },
+    {
+      "id": "all_folders",
+      "title": "Oops! All Folders",
+      "description": "Have a folder with 20 or more folders in it & no files"
+    },
+    {
+      "id": "parent_into_child",
+      "title": "The Parent Trap",
+      "description": "Move a folder into its own child"
+    },
+    {
+      "id": "preview_image",
+      "title": "The Previewer",
+      "description": "Preview an image"
+    },
+    {
+      "id": "download_file",
+      "title": "The Downloader",
+      "description": "Download a file"
+    },
+    {
+      "id": "mass_delete",
+      "title": "The Mass Deleter",
+      "description": "Delete 5 or more files at once"
+    },
+    {
+      "id": "breadcrumb_navigation",
+      "title": "The Breadcrumb",
+      "description": "Navigate back using the breadcrumb"
+    },
+    {
+      "id": "resize_sidebar",
+      "title": "The Resizer",
+      "description": "Resize the sidebar"
+    },
+    {
+      "id": "expand_sidebar_folder",
+      "title": "The Great Expander",
+      "description": "Expand a folder in the sidebar"
+    },
+    {
+      "id": "navigation_depth",
+      "title": "The Navigator",
+      "description": "Navigate to a folder 3 levels deep"
+    },
+    {
+      "id": "duplicate_file",
+      "title": "The Duplicator",
+      "description": "Duplicate a file"
+    }
+  ]
+}
