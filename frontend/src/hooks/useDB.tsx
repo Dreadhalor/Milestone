@@ -1,6 +1,6 @@
-// import { createDB } from '../db/DBConfig';
-// import { Database } from '../db/Database';
+import { useCreateDB } from '../db/DBConfig';
+import { Database } from '../db/Database';
 
-// export const useDB = (): Database => {
-//   return createDB();
-// };
+export const useDB = (): Database => {
+  return useCreateDB();
+};

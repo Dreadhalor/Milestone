@@ -1,8 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import achievements_list from '../achievements.json';
 import { BaseAchievement } from '../types';
+import { useDB } from '@src/hooks/useDB';
 
-const achievementsData: BaseAchievement[] = achievements_list.base_achievements;
 const squareSize = 200;
 
 type AchievementSquareProps = {
@@ -27,6 +26,10 @@ const AchievementsGrid: React.FC = () => {
   const gap = 4;
   const itemWidthWithGap = squareSize + gap;
   const padding = 20;
+
+  const [gameAchievements, setGameAchievements] = useState<BaseAchievement[]>(
+    []
+  );
 
   const getContainerWidth = useCallback(() => {
     const initialWidth = window.innerWidth - 2 * padding;
@@ -59,10 +62,18 @@ const AchievementsGrid: React.FC = () => {
     margin: '0 auto',
   };
 
+  const db = useDB();
+
+  useEffect(() => {
+    db.fetchGameAchievements('fallcrate').then((data) =>
+      setGameAchievements(data)
+    );
+  }, [db]);
+
   return (
     <div className='w-full flex-1 overflow-auto pb-[20px]'>
       <div style={containerStyle}>
-        {achievementsData.map((achievement) => (
+        {gameAchievements.map((achievement) => (
           <AchievementSquare achievement={achievement} key={achievement.id} />
         ))}
       </div>

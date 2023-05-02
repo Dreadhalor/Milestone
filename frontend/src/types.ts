@@ -13,4 +13,9 @@ interface UserAchievement {
   state: 'locked' | 'newly_unlocked' | 'unlocked';
 }
 
-export type { BaseAchievement, UserAchievement };
+interface User {
+  id: string;
+  username: string;
+}
+
+export type { BaseAchievement, UserAchievement, User };
