@@ -1,17 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import achievements_list from '../achievements.json';
+import { BaseAchievement } from '../types';
 
-interface Achievement {
-  id: string;
-  title: string;
-  description: string;
-}
-
-const achievementsData: Achievement[] = achievements_list.achievements;
+const achievementsData: BaseAchievement[] = achievements_list.base_achievements;
 const squareSize = 200;
 
 type AchievementSquareProps = {
-  achievement: Achievement;
+  achievement: BaseAchievement;
 };
 const AchievementSquare = ({ achievement }: AchievementSquareProps) => {
   const style = {

@@ -1,0 +1,12 @@
+{
+  "name": "milestone-backend",
+  "version": "1.0.0",
+  "description": "test backend for milestone",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run start-json",
+    "start-json": "json-server --watch json-server-data/db.json --port 3001"
+  },
+  "author": "",
+  "license": "ISC"
+}

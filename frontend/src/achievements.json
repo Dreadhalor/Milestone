@@ -1,82 +1,98 @@
 {
-  "achievements": [
+  "base_achievements": [
     {
       "id": "rename_file",
+      "gameId": "fallcrate",
       "title": "The Rename-issance",
       "description": "Rename a file or folder"
     },
     {
       "id": "file_into_file",
+      "gameId": "fallcrate",
       "title": "Inception",
-      "description": "Move a file into a file"
+      "description": "Move a folder into a folder"
     },
     {
       "id": "name_conflict",
+      "gameId": "fallcrate",
       "title": "The Name Game",
       "description": "Attempt to rename a file the same name as another file"
     },
     {
       "id": "upload_file",
+      "gameId": "fallcrate",
       "title": "The Uploader",
       "description": "Upload a file"
     },
     {
       "id": "create_folder",
+      "gameId": "fallcrate",
       "title": "The Folder Creator",
       "description": "Create a folder"
     },
     {
       "id": "delete_file",
+      "gameId": "fallcrate",
       "title": "The Deleter",
       "description": "Delete a file"
     },
     {
       "id": "all_folders",
+      "gameId": "fallcrate",
       "title": "Oops! All Folders",
       "description": "Have a folder with 20 or more folders in it & no files"
     },
     {
       "id": "parent_into_child",
+      "gameId": "fallcrate",
       "title": "The Parent Trap",
       "description": "Move a folder into its own child"
     },
     {
       "id": "preview_image",
+      "gameId": "fallcrate",
       "title": "The Previewer",
       "description": "Preview an image"
     },
     {
       "id": "download_file",
+      "gameId": "fallcrate",
       "title": "The Downloader",
       "description": "Download a file"
     },
     {
       "id": "mass_delete",
+      "gameId": "fallcrate",
       "title": "The Mass Deleter",
       "description": "Delete 5 or more files at once"
     },
     {
       "id": "breadcrumb_navigation",
+      "gameId": "fallcrate",
       "title": "The Breadcrumb",
       "description": "Navigate back using the breadcrumb"
     },
     {
       "id": "resize_sidebar",
+      "gameId": "fallcrate",
       "title": "The Resizer",
       "description": "Resize the sidebar"
     },
     {
       "id": "expand_sidebar_folder",
+      "gameId": "fallcrate",
       "title": "The Great Expander",
       "description": "Expand a folder in the sidebar"
     },
     {
       "id": "navigation_depth",
-      "title": "The Navigator",
+      "gameId": "fallcrate",
+      "title": "We Need To Go Deeper",
       "description": "Navigate to a folder 3 levels deep"
     },
     {
       "id": "duplicate_file",
+      "gameId": "fallcrate",
       "title": "The Duplicator",
       "description": "Duplicate a file"
     }
