@@ -9,13 +9,15 @@ interface UserAchievement {
   id: string;
   gameId: string;
   userId: string;
-  unlockedAt: Date;
+  unlockedAt: Date | null;
   state: 'locked' | 'newly_unlocked' | 'unlocked';
 }
 
-interface User {
-  id: string;
-  username: string;
-}
+interface Achievement extends BaseAchievement, UserAchievement {}
 
-export type { BaseAchievement, UserAchievement, User };
+// interface User {
+//   id: string;
+//   username: string;
+// }
+
+export type { BaseAchievement, UserAchievement, Achievement };

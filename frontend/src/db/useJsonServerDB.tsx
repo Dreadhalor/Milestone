@@ -15,15 +15,46 @@ const useJsonServerDB = (): Database => {
   };
 
   const fetchUserAchievements = async (
-    userId: string
+    userId: string | null
   ): Promise<UserAchievement[]> => {
+    if (!userId) return Promise.resolve([]);
     // make a get request to /userAchievements/:gameId
-    return fetch(`${databaseUrl}/achievements?userId=${userId}`).then((res) =>
-      res.json()
+    return fetch(`${databaseUrl}/userAchievements?userId=${userId}`).then(
+      (res) => res.json()
     );
   };
 
-  return { fetchGameAchievements, fetchUserAchievements };
+  const saveAchievement = async (
+    achievement: UserAchievement
+  ): Promise<UserAchievement> => {
+    // First, check if the UserAchievement exists
+    const response = await fetch(
+      `${databaseUrl}/userAchievements?id=${achievement.id}`
+    );
+    const existingAchievement = await response.json();
+
+    // If the UserAchievement exists, update it
+    if (existingAchievement.length > 0) {
+      return fetch(`${databaseUrl}/userAchievements/${achievement.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(achievement),
+      }).then((res) => res.json());
+    } else {
+      // If the UserAchievement doesn't exist, create a new one
+      return fetch(`${databaseUrl}/userAchievements`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(achievement),
+      }).then((res) => res.json());
+    }
+  };
+
+  return { fetchGameAchievements, fetchUserAchievements, saveAchievement };
 };
 
 export default useJsonServerDB;

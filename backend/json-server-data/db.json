@@ -21,7 +21,7 @@
     {
       "id": "name_conflict",
       "gameId": "fallcrate",
-      "title": "The Name Game",
+      "title": "I am Spartacus!",
       "description": "Attempt to rename a file the same name as another file"
     },
     {
@@ -52,7 +52,7 @@
       "id": "parent_into_child",
       "gameId": "fallcrate",
       "title": "The Parent Trap",
-      "description": "Move a folder into its own child"
+      "description": "Try to move a folder into its own child"
     },
     {
       "id": "preview_image",
@@ -81,7 +81,7 @@
     {
       "id": "resize_sidebar",
       "gameId": "fallcrate",
-      "title": "The Resizer",
+      "title": "Resize Me Like One of Your French Sidebars",
       "description": "Resize the sidebar"
     },
     {
@@ -94,13 +94,87 @@
       "id": "navigation_depth",
       "gameId": "fallcrate",
       "title": "We Need To Go Deeper",
-      "description": "Navigate to a folder 3 levels deep"
+      "description": "Navigate to a folder 7 levels deep"
     },
     {
       "id": "duplicate_file",
       "gameId": "fallcrate",
       "title": "The Duplicator",
       "description": "Duplicate a file"
+    },
+    {
+      "id": "open_file_from_search",
+      "gameId": "fallcrate",
+      "title": "There You Are!",
+      "description": "Open a file after finding it in search"
+    },
+    {
+      "id": "nested_delete",
+      "gameId": "fallcrate",
+      "title": "Baby with the Bathwater",
+      "description": "Delete a folder that isn't empty"
+    },
+    {
+      "id": "move_into_a_file",
+      "gameId": "fallcrate",
+      "title": "Hey, I Don't Work Here",
+      "description": "Attempt to move a file or folder into a file"
+    },
+    {
+      "id": "collapse_sidebar",
+      "gameId": "fallcrate",
+      "title": "Sidebar? We Don't Need No Stinkin' Sidebar!",
+      "description": "Collapse the sidebar"
+    },
+    {
+      "id": "open_sidebar",
+      "gameId": "fallcrate",
+      "title": "Show Me the Sidebar!",
+      "description": "Open the sidebar"
+    }
+  ],
+  "userAchievements": [
+    {
+      "id": "file_into_file",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": "2023-05-06T21:55:47.071Z",
+      "state": "unlocked"
+    },
+    {
+      "id": "rename_file",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "name_conflict",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "delete_file",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "all_folders",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": "2023-05-06T11:34:52.319Z",
+      "state": "unlocked"
+    },
+    {
+      "id": "create_folder",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": "2023-05-06T11:35:04.089Z",
+      "state": "unlocked"
     }
   ]
 }
