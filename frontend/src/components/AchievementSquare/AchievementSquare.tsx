@@ -1,6 +1,7 @@
 import { Achievement } from '@src/types';
 import { useAchievements } from '../../hooks/useAchievements';
 import { constructBorders, getNeighbors } from './achievementSquareUtils';
+import { Popover } from 'antd';
 
 type AchievementSquareProps = {
   achievement: Achievement;
@@ -23,9 +24,9 @@ const AchievementSquare = ({
     neighbors.right?.state === 'unlocked';
 
   const bg_colors = {
-    locked: 'rgb(17 24 39)',
+    locked: 'rgb(44,3,21)',
     unlocked: '',
-    locked_with_unlocked_neighbors: 'rgba(51,61,75,0.97)',
+    locked_with_unlocked_neighbors: 'rgba(84,43,61,0.97)',
   };
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -54,16 +55,27 @@ const AchievementSquare = ({
 
   const { toggleAchievement } = useAchievements();
 
+  const popoverContent = (
+    <p className='text-white'>{achievement.description}</p>
+  );
+
   return (
     <div className='relative pb-[100%]'>
-      <div
-        className={`p-4 ${!is_selected ? 'transition-all' : ''}`}
-        style={{ ...innerSquareStyle, ...style }}
-        onClick={handleClick}
-        onDoubleClick={() => {
-          toggleAchievement(achievement);
-        }}
-      ></div>
+      <Popover
+        content={popoverContent}
+        title={<span className='text-white'>{achievement.title}</span>}
+        open={is_selected}
+        color={bg_colors.locked}
+      >
+        <div
+          className={`p-4 ${!is_selected ? 'transition-all' : ''}`}
+          style={{ ...innerSquareStyle, ...style }}
+          onClick={handleClick}
+          onDoubleClick={() => {
+            toggleAchievement(achievement);
+          }}
+        ></div>
+      </Popover>
     </div>
   );
 };

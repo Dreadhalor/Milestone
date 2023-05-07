@@ -4,7 +4,6 @@ import { useSigninCheck } from 'reactfire';
 import { SignInOutButton } from './SignInOutButton';
 import { Achievement } from '@src/types';
 import AchievementsGrid from './AchievementsGrid';
-import InfoPanel from './InfoPanel';
 
 const AchievementsPage: React.FC = () => {
   const signInCheck = useSigninCheck();
@@ -37,7 +36,6 @@ const AchievementsPage: React.FC = () => {
             selectedAchievement={selectedAchievement}
             selectAchievement={selectAchievement}
           />
-          <InfoPanel selectedAchievement={selectedAchievement} />
         </div>
       )}
     </div>
