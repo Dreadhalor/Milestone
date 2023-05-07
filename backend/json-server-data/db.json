@@ -63,7 +63,7 @@
     {
       "id": "download_file",
       "gameId": "fallcrate",
-      "title": "The Downloader",
+      "title": "I'll Be Taking That Now",
       "description": "Download a file"
     },
     {
@@ -112,7 +112,7 @@
       "id": "nested_delete",
       "gameId": "fallcrate",
       "title": "Baby with the Bathwater",
-      "description": "Delete a folder that isn't empty"
+      "description": "Delete a folder with a file in it"
     },
     {
       "id": "move_into_a_file",
@@ -131,6 +131,480 @@
       "gameId": "fallcrate",
       "title": "Show Me the Sidebar!",
       "description": "Open the sidebar"
+    },
+    {
+      "id": "zoom_into_image",
+      "gameId": "fallcrate",
+      "title": "Enhance!",
+      "description": "Zoom into an image preview"
+    },
+    {
+      "id": "filler_23",
+      "gameId": "fallcrate",
+      "title": "filler_23",
+      "description": "Filler text for filler achievement 23"
+    },
+    {
+      "id": "filler_24",
+      "gameId": "fallcrate",
+      "title": "filler_24",
+      "description": "Filler text for filler achievement 24"
+    },
+    {
+      "id": "filler_25",
+      "gameId": "fallcrate",
+      "title": "filler_25",
+      "description": "Filler text for filler achievement 25"
+    },
+    {
+      "id": "filler_26",
+      "gameId": "fallcrate",
+      "title": "filler_26",
+      "description": "Filler text for filler achievement 26"
+    },
+    {
+      "id": "filler_27",
+      "gameId": "fallcrate",
+      "title": "filler_27",
+      "description": "Filler text for filler achievement 27"
+    },
+    {
+      "id": "filler_28",
+      "gameId": "fallcrate",
+      "title": "filler_28",
+      "description": "Filler text for filler achievement 28"
+    },
+    {
+      "id": "filler_29",
+      "gameId": "fallcrate",
+      "title": "filler_29",
+      "description": "Filler text for filler achievement 29"
+    },
+    {
+      "id": "filler_30",
+      "gameId": "fallcrate",
+      "title": "filler_30",
+      "description": "Filler text for filler achievement 30"
+    },
+    {
+      "id": "filler_31",
+      "gameId": "fallcrate",
+      "title": "filler_31",
+      "description": "Filler text for filler achievement 31"
+    },
+    {
+      "id": "filler_32",
+      "gameId": "fallcrate",
+      "title": "filler_32",
+      "description": "Filler text for filler achievement 32"
+    },
+    {
+      "id": "filler_33",
+      "gameId": "fallcrate",
+      "title": "filler_33",
+      "description": "Filler text for filler achievement 33"
+    },
+    {
+      "id": "filler_34",
+      "gameId": "fallcrate",
+      "title": "filler_34",
+      "description": "Filler text for filler achievement 34"
+    },
+    {
+      "id": "filler_35",
+      "gameId": "fallcrate",
+      "title": "filler_35",
+      "description": "Filler text for filler achievement 35"
+    },
+    {
+      "id": "filler_36",
+      "gameId": "fallcrate",
+      "title": "filler_36",
+      "description": "Filler text for filler achievement 36"
+    },
+    {
+      "id": "filler_37",
+      "gameId": "fallcrate",
+      "title": "filler_37",
+      "description": "Filler text for filler achievement 37"
+    },
+    {
+      "id": "filler_38",
+      "gameId": "fallcrate",
+      "title": "filler_38",
+      "description": "Filler text for filler achievement 38"
+    },
+    {
+      "id": "filler_39",
+      "gameId": "fallcrate",
+      "title": "filler_39",
+      "description": "Filler text for filler achievement 39"
+    },
+    {
+      "id": "filler_40",
+      "gameId": "fallcrate",
+      "title": "filler_40",
+      "description": "Filler text for filler achievement 40"
+    },
+    {
+      "id": "filler_41",
+      "gameId": "fallcrate",
+      "title": "filler_41",
+      "description": "Filler text for filler achievement 41"
+    },
+    {
+      "id": "filler_42",
+      "gameId": "fallcrate",
+      "title": "filler_42",
+      "description": "Filler text for filler achievement 42"
+    },
+    {
+      "id": "filler_43",
+      "gameId": "fallcrate",
+      "title": "filler_43",
+      "description": "Filler text for filler achievement 43"
+    },
+    {
+      "id": "filler_44",
+      "gameId": "fallcrate",
+      "title": "filler_44",
+      "description": "Filler text for filler achievement 44"
+    },
+    {
+      "id": "filler_45",
+      "gameId": "fallcrate",
+      "title": "filler_45",
+      "description": "Filler text for filler achievement 45"
+    },
+    {
+      "id": "filler_46",
+      "gameId": "fallcrate",
+      "title": "filler_46",
+      "description": "Filler text for filler achievement 46"
+    },
+    {
+      "id": "filler_47",
+      "gameId": "fallcrate",
+      "title": "filler_47",
+      "description": "Filler text for filler achievement 47"
+    },
+    {
+      "id": "filler_48",
+      "gameId": "fallcrate",
+      "title": "filler_48",
+      "description": "Filler text for filler achievement 48"
+    },
+    {
+      "id": "filler_49",
+      "gameId": "fallcrate",
+      "title": "filler_49",
+      "description": "Filler text for filler achievement 49"
+    },
+    {
+      "id": "filler_50",
+      "gameId": "fallcrate",
+      "title": "filler_50",
+      "description": "Filler text for filler achievement 50"
+    },
+    {
+      "id": "filler_51",
+      "gameId": "fallcrate",
+      "title": "filler_51",
+      "description": "Filler text for filler achievement 51"
+    },
+    {
+      "id": "filler_52",
+      "gameId": "fallcrate",
+      "title": "filler_52",
+      "description": "Filler text for filler achievement 52"
+    },
+    {
+      "id": "filler_53",
+      "gameId": "fallcrate",
+      "title": "filler_53",
+      "description": "Filler text for filler achievement 53"
+    },
+    {
+      "id": "filler_54",
+      "gameId": "fallcrate",
+      "title": "filler_54",
+      "description": "Filler text for filler achievement 54"
+    },
+    {
+      "id": "filler_55",
+      "gameId": "fallcrate",
+      "title": "filler_55",
+      "description": "Filler text for filler achievement 55"
+    },
+    {
+      "id": "filler_56",
+      "gameId": "fallcrate",
+      "title": "filler_56",
+      "description": "Filler text for filler achievement 56"
+    },
+    {
+      "id": "filler_57",
+      "gameId": "fallcrate",
+      "title": "filler_57",
+      "description": "Filler text for filler achievement 57"
+    },
+    {
+      "id": "filler_58",
+      "gameId": "fallcrate",
+      "title": "filler_58",
+      "description": "Filler text for filler achievement 58"
+    },
+    {
+      "id": "filler_59",
+      "gameId": "fallcrate",
+      "title": "filler_59",
+      "description": "Filler text for filler achievement 59"
+    },
+    {
+      "id": "filler_60",
+      "gameId": "fallcrate",
+      "title": "filler_60",
+      "description": "Filler text for filler achievement 60"
+    },
+    {
+      "id": "filler_61",
+      "gameId": "fallcrate",
+      "title": "filler_61",
+      "description": "Filler text for filler achievement 61"
+    },
+    {
+      "id": "filler_62",
+      "gameId": "fallcrate",
+      "title": "filler_62",
+      "description": "Filler text for filler achievement 62"
+    },
+    {
+      "id": "filler_63",
+      "gameId": "fallcrate",
+      "title": "filler_63",
+      "description": "Filler text for filler achievement 63"
+    },
+    {
+      "id": "filler_64",
+      "gameId": "fallcrate",
+      "title": "filler_64",
+      "description": "Filler text for filler achievement 64"
+    },
+    {
+      "id": "filler_65",
+      "gameId": "fallcrate",
+      "title": "filler_65",
+      "description": "Filler text for filler achievement 65"
+    },
+    {
+      "id": "filler_66",
+      "gameId": "fallcrate",
+      "title": "filler_66",
+      "description": "Filler text for filler achievement 66"
+    },
+    {
+      "id": "filler_67",
+      "gameId": "fallcrate",
+      "title": "filler_67",
+      "description": "Filler text for filler achievement 67"
+    },
+    {
+      "id": "filler_68",
+      "gameId": "fallcrate",
+      "title": "filler_68",
+      "description": "Filler text for filler achievement 68"
+    },
+    {
+      "id": "filler_69",
+      "gameId": "fallcrate",
+      "title": "filler_69",
+      "description": "Filler text for filler achievement 69"
+    },
+    {
+      "id": "filler_70",
+      "gameId": "fallcrate",
+      "title": "filler_70",
+      "description": "Filler text for filler achievement 70"
+    },
+    {
+      "id": "filler_71",
+      "gameId": "fallcrate",
+      "title": "filler_71",
+      "description": "Filler text for filler achievement 71"
+    },
+    {
+      "id": "filler_72",
+      "gameId": "fallcrate",
+      "title": "filler_72",
+      "description": "Filler text for filler achievement 72"
+    },
+    {
+      "id": "filler_73",
+      "gameId": "fallcrate",
+      "title": "filler_73",
+      "description": "Filler text for filler achievement 73"
+    },
+    {
+      "id": "filler_74",
+      "gameId": "fallcrate",
+      "title": "filler_74",
+      "description": "Filler text for filler achievement 74"
+    },
+    {
+      "id": "filler_75",
+      "gameId": "fallcrate",
+      "title": "filler_75",
+      "description": "Filler text for filler achievement 75"
+    },
+    {
+      "id": "filler_76",
+      "gameId": "fallcrate",
+      "title": "filler_76",
+      "description": "Filler text for filler achievement 76"
+    },
+    {
+      "id": "filler_77",
+      "gameId": "fallcrate",
+      "title": "filler_77",
+      "description": "Filler text for filler achievement 77"
+    },
+    {
+      "id": "filler_78",
+      "gameId": "fallcrate",
+      "title": "filler_78",
+      "description": "Filler text for filler achievement 78"
+    },
+    {
+      "id": "filler_79",
+      "gameId": "fallcrate",
+      "title": "filler_79",
+      "description": "Filler text for filler achievement 79"
+    },
+    {
+      "id": "filler_80",
+      "gameId": "fallcrate",
+      "title": "filler_80",
+      "description": "Filler text for filler achievement 80"
+    },
+    {
+      "id": "filler_81",
+      "gameId": "fallcrate",
+      "title": "filler_81",
+      "description": "Filler text for filler achievement 81"
+    },
+    {
+      "id": "filler_82",
+      "gameId": "fallcrate",
+      "title": "filler_82",
+      "description": "Filler text for filler achievement 82"
+    },
+    {
+      "id": "filler_83",
+      "gameId": "fallcrate",
+      "title": "filler_83",
+      "description": "Filler text for filler achievement 83"
+    },
+    {
+      "id": "filler_84",
+      "gameId": "fallcrate",
+      "title": "filler_84",
+      "description": "Filler text for filler achievement 84"
+    },
+    {
+      "id": "filler_85",
+      "gameId": "fallcrate",
+      "title": "filler_85",
+      "description": "Filler text for filler achievement 85"
+    },
+    {
+      "id": "filler_86",
+      "gameId": "fallcrate",
+      "title": "filler_86",
+      "description": "Filler text for filler achievement 86"
+    },
+    {
+      "id": "filler_87",
+      "gameId": "fallcrate",
+      "title": "filler_87",
+      "description": "Filler text for filler achievement 87"
+    },
+    {
+      "id": "filler_88",
+      "gameId": "fallcrate",
+      "title": "filler_88",
+      "description": "Filler text for filler achievement 88"
+    },
+    {
+      "id": "filler_89",
+      "gameId": "fallcrate",
+      "title": "filler_89",
+      "description": "Filler text for filler achievement 89"
+    },
+    {
+      "id": "filler_90",
+      "gameId": "fallcrate",
+      "title": "filler_90",
+      "description": "Filler text for filler achievement 90"
+    },
+    {
+      "id": "filler_91",
+      "gameId": "fallcrate",
+      "title": "filler_91",
+      "description": "Filler text for filler achievement 91"
+    },
+    {
+      "id": "filler_92",
+      "gameId": "fallcrate",
+      "title": "filler_92",
+      "description": "Filler text for filler achievement 92"
+    },
+    {
+      "id": "filler_93",
+      "gameId": "fallcrate",
+      "title": "filler_93",
+      "description": "Filler text for filler achievement 93"
+    },
+    {
+      "id": "filler_94",
+      "gameId": "fallcrate",
+      "title": "filler_94",
+      "description": "Filler text for filler achievement 94"
+    },
+    {
+      "id": "filler_95",
+      "gameId": "fallcrate",
+      "title": "filler_95",
+      "description": "Filler text for filler achievement 95"
+    },
+    {
+      "id": "filler_96",
+      "gameId": "fallcrate",
+      "title": "filler_96",
+      "description": "Filler text for filler achievement 96"
+    },
+    {
+      "id": "filler_97",
+      "gameId": "fallcrate",
+      "title": "filler_97",
+      "description": "Filler text for filler achievement 97"
+    },
+    {
+      "id": "filler_98",
+      "gameId": "fallcrate",
+      "title": "filler_98",
+      "description": "Filler text for filler achievement 98"
+    },
+    {
+      "id": "filler_99",
+      "gameId": "fallcrate",
+      "title": "filler_99",
+      "description": "Filler text for filler achievement 99"
+    },
+    {
+      "id": "filler_100",
+      "gameId": "fallcrate",
+      "title": "filler_100",
+      "description": "Filler text for filler achievement 100"
     }
   ],
   "userAchievements": [
@@ -138,22 +612,22 @@
       "id": "file_into_file",
       "gameId": "fallcrate",
       "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
-      "unlockedAt": "2023-05-06T21:55:47.071Z",
-      "state": "unlocked"
+      "unlockedAt": null,
+      "state": "locked"
     },
     {
       "id": "rename_file",
       "gameId": "fallcrate",
       "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
-      "unlockedAt": null,
-      "state": "locked"
+      "unlockedAt": "2023-05-07T05:26:10.735Z",
+      "state": "unlocked"
     },
     {
       "id": "name_conflict",
       "gameId": "fallcrate",
       "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
-      "unlockedAt": null,
-      "state": "locked"
+      "unlockedAt": "2023-05-07T04:52:52.057Z",
+      "state": "unlocked"
     },
     {
       "id": "delete_file",
@@ -166,14 +640,497 @@
       "id": "all_folders",
       "gameId": "fallcrate",
       "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
-      "unlockedAt": "2023-05-06T11:34:52.319Z",
-      "state": "unlocked"
+      "unlockedAt": null,
+      "state": "locked"
     },
     {
       "id": "create_folder",
       "gameId": "fallcrate",
       "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
-      "unlockedAt": "2023-05-06T11:35:04.089Z",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "parent_into_child",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": "2023-05-07T05:26:27.009Z",
+      "state": "unlocked"
+    },
+    {
+      "id": "move_into_a_file",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "nested_delete",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": "2023-05-07T05:11:29.805Z",
+      "state": "unlocked"
+    },
+    {
+      "id": "expand_sidebar_folder",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "breadcrumb_navigation",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "mass_delete",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "resize_sidebar",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "collapse_sidebar",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": "2023-05-07T00:20:20.824Z",
+      "state": "unlocked"
+    },
+    {
+      "id": "open_file_from_search",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "preview_image",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "open_sidebar",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_53",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_78",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_100",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": "2023-05-07T00:19:09.227Z",
+      "state": "unlocked"
+    },
+    {
+      "id": "filler_88",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_96",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_84",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_92",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_71",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": "2023-05-07T00:19:47.331Z",
+      "state": "unlocked"
+    },
+    {
+      "id": "filler_63",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_55",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_77",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_76",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_68",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_60",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_80",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": "2023-05-07T00:20:25.578Z",
+      "state": "unlocked"
+    },
+    {
+      "id": "filler_64",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_52",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_83",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_95",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_97",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": "2023-05-07T00:19:44.775Z",
+      "state": "unlocked"
+    },
+    {
+      "id": "filler_91",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": "2023-05-07T00:19:48.985Z",
+      "state": "unlocked"
+    },
+    {
+      "id": "filler_57",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_45",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_33",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_69",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": "2023-05-07T00:19:58.457Z",
+      "state": "unlocked"
+    },
+    {
+      "id": "filler_38",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": "2023-05-07T04:44:28.191Z",
+      "state": "unlocked"
+    },
+    {
+      "id": "filler_26",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_50",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": "2023-05-07T00:20:17.402Z",
+      "state": "unlocked"
+    },
+    {
+      "id": "download_file",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_41",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_93",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_24",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_23",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_43",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_44",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_35",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_25",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_47",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_48",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_31",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": "2023-05-07T04:07:21.009Z",
+      "state": "unlocked"
+    },
+    {
+      "id": "zoom_into_image",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": "2023-05-07T05:22:39.527Z",
+      "state": "unlocked"
+    },
+    {
+      "id": "filler_46",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_36",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_34",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "navigation_depth",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": "2023-05-07T05:28:55.202Z",
+      "state": "unlocked"
+    },
+    {
+      "id": "filler_42",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": "2023-05-07T04:34:57.602Z",
+      "state": "unlocked"
+    },
+    {
+      "id": "filler_56",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_62",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": "2023-05-07T04:38:18.294Z",
+      "state": "unlocked"
+    },
+    {
+      "id": "filler_28",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_37",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_27",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_75",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_65",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": "2023-05-07T05:29:25.366Z",
+      "state": "unlocked"
+    },
+    {
+      "id": "duplicate_file",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_54",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_74",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_66",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": null,
+      "state": "locked"
+    },
+    {
+      "id": "filler_32",
+      "gameId": "fallcrate",
+      "userId": "qcA7iSfN3FNGhAXe72kN3NRw73ib",
+      "unlockedAt": "2023-05-07T05:48:52.160Z",
       "state": "unlocked"
     }
   ]

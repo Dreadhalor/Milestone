@@ -59,7 +59,6 @@ export const AchievementsProvider = ({ children }: Props) => {
     }
 
     const userAchievement = extractUserAchievement(achievement);
-    console.log(userAchievement);
 
     if (userAchievement.state === 'locked') {
       await unlockAchievement(achievement);

@@ -35,7 +35,9 @@ function FirebaseComponents({ children }: Props) {
     // Point to the emulators running on localhost.
     // connectStorageEmulator(storage, 'localhost', 9199);
     // connectFirestoreEmulator(db, 'localhost', 8080);
-    connectAuthEmulator(auth, 'http://localhost:9099');
+    connectAuthEmulator(auth, 'http://localhost:9099', {
+      disableWarnings: true,
+    });
   }
 
   return (
