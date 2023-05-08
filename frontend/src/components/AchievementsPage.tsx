@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useAchievements } from '@src/hooks/useAchievements';
 import { useSigninCheck } from 'reactfire';
-import { SignInOutButton } from './SignInOutButton';
 import { Achievement } from '@src/types';
 import AchievementsGrid from './AchievementsGrid';
 
@@ -12,6 +11,8 @@ const AchievementsPage: React.FC = () => {
     useState<Achievement | null>(null);
 
   const { achievements } = useAchievements();
+
+  // console.log('sign in result:', signInCheckResult);
 
   const selectAchievement = (achievement_id: string | null) => {
     const achievement =
@@ -24,11 +25,11 @@ const AchievementsPage: React.FC = () => {
 
   return (
     <div
-      className='relative flex h-full w-full flex-col content-center text-white'
+      className='relative flex min-h-0 w-full flex-1 flex-col content-center text-white'
       onClick={() => selectAchievement(null)}
     >
-      <span className=' mx-auto p-3 font-sans text-4xl'>
-        Dreadhalor's Treasure Hunt <SignInOutButton />
+      <span className='mx-auto flex p-3 font-sans text-4xl'>
+        Dreadhalor's Treasure Hunt
       </span>
       {signInCheckResult.signedIn === true && (
         <div className='relative overflow-auto'>

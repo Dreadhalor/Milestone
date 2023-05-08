@@ -1,7 +1,7 @@
 import { Achievement } from '@src/types';
 import { useAchievements } from '../../hooks/useAchievements';
 import { constructBorders, getNeighbors } from './achievementSquareUtils';
-import { Popover } from 'antd';
+import AchievementPopover from './AchievementPopover';
 
 type AchievementSquareProps = {
   achievement: Achievement;
@@ -55,28 +55,19 @@ const AchievementSquare = ({
 
   const { toggleAchievement } = useAchievements();
 
-  const popoverContent = (
-    <p className='text-white'>{achievement.description}</p>
-  );
-
   return (
-    <div className='relative pb-[100%]'>
-      <Popover
-        content={popoverContent}
-        title={<span className='text-white'>{achievement.title}</span>}
-        open={is_selected}
-        color={bg_colors.locked}
-      >
+    <AchievementPopover achievement={achievement} open={is_selected}>
+      <div className='relative pb-[100%]'>
         <div
-          className={`p-4 ${!is_selected ? 'transition-all' : ''}`}
+          className={`${!is_selected ? 'transition-all' : ''}`}
           style={{ ...innerSquareStyle, ...style }}
           onClick={handleClick}
           onDoubleClick={() => {
             toggleAchievement(achievement);
           }}
         ></div>
-      </Popover>
-    </div>
+      </div>
+    </AchievementPopover>
   );
 };
 

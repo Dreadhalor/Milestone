@@ -34,7 +34,6 @@ const MapBorder = ({ children }: Props) => {
     };
 
     getImageDimensions(roughBorderSouth).then((dimensions) => {
-      console.log(dimensions);
       setBorderThickness(dimensions.height);
     });
   }, []);

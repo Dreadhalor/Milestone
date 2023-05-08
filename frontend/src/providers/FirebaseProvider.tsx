@@ -1,9 +1,9 @@
-import { getStorage, connectStorageEmulator } from 'firebase/storage'; // Firebase v9+
-import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore'; // Firebase v9+
+// import { getStorage, connectStorageEmulator } from 'firebase/storage'; // Firebase v9+
+// import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore'; // Firebase v9+
 import {
   FirebaseAppProvider,
-  StorageProvider,
-  FirestoreProvider,
+  // StorageProvider,
+  // FirestoreProvider,
   useFirebaseApp,
   AuthProvider,
 } from 'reactfire';
