@@ -1,32 +1,16 @@
-import { useAuth } from 'reactfire';
-import {
-  GoogleAuthProvider,
-  onAuthStateChanged,
-  signInWithPopup,
-  signOut,
-  User,
-} from 'firebase/auth';
-import { useEffect, useState } from 'react';
+import { useAuth, useSigninCheck } from 'reactfire';
+import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
 import SignInButton from './SignInButton';
 import UserIcon from './UserIcon';
 
 const UserMenu = () => {
   const auth = useAuth();
-  const [user, setUser] = useState(null as User | null);
-  const [loading, setLoading] = useState(true);
 
   const menuButtonHeight = 50;
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
-      setLoading(false);
-    });
-
-    return () => {
-      unsubscribe();
-    };
-  }, [auth]);
+  const { status, data: signInResultCheck } = useSigninCheck();
+  const loading = status === 'loading';
+  const user = signInResultCheck?.user || null;
 
   const signInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
@@ -50,13 +34,13 @@ const UserMenu = () => {
   const onClickHandler = showSignInButton ? signInWithGoogle : handleLogout;
 
   const hover_classes = `hover:border-[rgba(255,255,255,0.7)] ${
-    showSignInButton ? 'hover:bg-[#6ebcff33]' : ''
+    showSignInButton ? 'hover:bg-[#6ebcff33] hover:border-transparent' : ''
   }`;
 
   return (
     <button
       onClick={onClickHandler}
-      className={`flex items-center justify-center rounded-full border-solid border-[rgba(255,255,255,0.5)] ${hover_classes}`}
+      className={`flex items-center justify-center rounded-full border-solid border-[rgba(255,255,255,0.5)] transition-colors duration-100 ${hover_classes}`}
       style={{
         borderWidth: showSignInButton ? '1px' : '2px',
         height: `${menuButtonHeight}px`,
