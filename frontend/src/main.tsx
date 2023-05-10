@@ -3,14 +3,15 @@ import ReactDOM from 'react-dom/client';
 import './index.scss';
 import App from './App';
 import { AchievementsProvider } from '@providers/AchievementsProvider';
-import { FirebaseProvider } from '@providers/FirebaseProvider';
+import { MilestoneProvider } from 'milestone-components';
+import 'milestone-components/styles.scss';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <FirebaseProvider>
+    <MilestoneProvider>
       <AchievementsProvider>
         <App />
       </AchievementsProvider>
-    </FirebaseProvider>
+    </MilestoneProvider>
   </React.StrictMode>
 );

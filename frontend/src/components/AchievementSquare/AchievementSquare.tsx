@@ -1,5 +1,5 @@
 import { Achievement } from '@src/types';
-import { useAchievements } from '../../hooks/useAchievements';
+import { useAchievements } from '@hooks/useAchievements';
 import { constructBorders, getNeighbors } from './achievementSquareUtils';
 import AchievementPopover from './AchievementPopover';
 
