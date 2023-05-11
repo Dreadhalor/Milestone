@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAchievements } from '@src/hooks/useAchievements';
 import { Achievement } from '@src/types';
 import AchievementsGrid from './AchievementsGrid';
@@ -17,6 +17,13 @@ const AchievementsPage: React.FC = () => {
       null;
     setSelectedAchievement(achievement);
   };
+
+  useEffect(() => {
+    // reset selected achievement when achievements change
+    // it'd be nice to just do this only when the achievement has no
+    // unlocked neighbors, but I do NOT want to deal with that right now
+    selectAchievement(null);
+  }, [achievements]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (loading) return <div>Loading...</div>;
 

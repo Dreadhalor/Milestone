@@ -31,7 +31,8 @@ const AchievementSquare = ({
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (!is_locked || has_unlocked_neighbors) {
-      selectAchievement(achievement.id);
+      if (is_selected) selectAchievement(null);
+      else selectAchievement(achievement.id);
       e.stopPropagation();
     }
   };

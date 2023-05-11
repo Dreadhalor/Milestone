@@ -2,6 +2,7 @@ import React, { createContext, useState, useEffect } from 'react';
 import { UserAchievement, BaseAchievement, Achievement } from '@src/types';
 import { useDB } from '@hooks/useDB';
 import { useAuth } from '@hooks/useAuth';
+import { Timestamp } from 'firebase/firestore';
 
 interface AchievementsContextValue {
   gameAchievements: BaseAchievement[];
@@ -31,31 +32,7 @@ export const AchievementsProvider = ({ children }: Props) => {
   );
   const [achievements, setAchievements] = useState<Achievement[]>([]);
 
-  const fetchGameAchievements = async () => {
-    const fetchedAchievements = await db.fetchGameAchievements('fallcrate');
-    console.log('game achievements: ', fetchedAchievements);
-    setGameAchievements(fetchedAchievements);
-  };
-
-  const fetchUserAchievements = async () => {
-    if (userId) {
-      const fetchedAchievements = await db.fetchUserAchievements(userId);
-      console.log('user achievements: ', fetchedAchievements);
-      setUserAchievements(fetchedAchievements);
-    } else {
-      setUserAchievements([]);
-    }
-  };
-  const resetAchievements = () => {
-    fetchGameAchievements();
-    fetchUserAchievements();
-  };
-
-  // useEffect(() => {
-  //   fetchGameAchievements();
-  //   fetchUserAchievements();
-  // }, [userId]);
-
+  // subscribe to game and user achievements
   useEffect(() => {
     const gameUnsubscribe = db.subscribeToGameAchievements(
       'fallcrate',
@@ -92,7 +69,7 @@ export const AchievementsProvider = ({ children }: Props) => {
 
     const userAchievement = extractUserAchievement(achievement);
     userAchievement.state = state;
-    if (state === 'unlocked') userAchievement.unlockedAt = new Date();
+    if (state === 'unlocked') userAchievement.unlockedAt = Timestamp.now();
 
     state === 'unlocked'
       ? await db.saveAchievement(userAchievement)
@@ -101,8 +78,6 @@ export const AchievementsProvider = ({ children }: Props) => {
           achievement.gameId,
           achievement.userId
         );
-
-    resetAchievements();
   };
 
   const unlockAchievement = (achievement: Achievement) =>
@@ -163,30 +138,27 @@ export const AchievementsProvider = ({ children }: Props) => {
       db.fetchUserAchievements(remoteUserId),
     ]);
 
-    const mergedPromises = localUserAchievements.map((localUserAchievement) => {
-      const remoteUserAchievement = remoteUserAchievements.find(
-        (remoteUserAchievement) =>
-          remoteUserAchievement.id === localUserAchievement.id &&
-          remoteUserAchievement.gameId === localUserAchievement.gameId
-      );
-      if (!remoteUserAchievement) {
-        const localUserAchievementCopy = { ...localUserAchievement };
-        localUserAchievementCopy.userId = remoteUserId;
-        return Promise.all([
-          db.saveAchievement(localUserAchievementCopy),
-          db.deleteAchievement(
-            localUserAchievement.id,
-            localUserAchievement.gameId,
-            localUserAchievement.userId
-          ),
-        ]);
+    const mergedPromises = localUserAchievements.map(
+      async (localUserAchievement) => {
+        const remoteUserAchievement = remoteUserAchievements.find(
+          (remoteUserAchievement) =>
+            remoteUserAchievement.id === localUserAchievement.id &&
+            remoteUserAchievement.gameId === localUserAchievement.gameId
+        );
+        if (!remoteUserAchievement) {
+          const localUserAchievementCopy = { ...localUserAchievement };
+          localUserAchievementCopy.userId = remoteUserId;
+          await db.saveAchievement(localUserAchievementCopy);
+        }
+        return db.deleteAchievement(
+          localUserAchievement.id,
+          localUserAchievement.gameId,
+          localUserAchievement.userId
+        );
       }
-      return Promise.resolve();
-    });
+    );
 
     await Promise.all(mergedPromises);
-
-    resetAchievements();
   };
 
   type MergeAccountsEventDetail = {

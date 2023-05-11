@@ -1,3 +1,5 @@
+import { Timestamp } from 'firebase/firestore';
+
 interface BaseAchievement {
   id: string;
   gameId: string;
@@ -14,7 +16,7 @@ interface UserAchievement {
   id: string;
   gameId: string;
   userId: string;
-  unlockedAt: Date | null;
+  unlockedAt: Timestamp | null;
   state: 'locked' | 'newly_unlocked' | 'unlocked';
 }
 

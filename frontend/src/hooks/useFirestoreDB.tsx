@@ -50,7 +50,6 @@ const useFirestoreDB = (): Database => {
       `users/${userId}/games/fallcrate/achievements`
     );
     const querySnapshot = await getDocs(achievementsCollection);
-    console.log('querySnapshot', querySnapshot);
     return querySnapshot.docs.map((doc) => doc.data() as UserAchievement);
   };
 
