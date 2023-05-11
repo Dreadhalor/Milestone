@@ -70,7 +70,7 @@ export const AchievementsProvider = ({ children }: Props) => {
       gameUnsubscribe && gameUnsubscribe();
       userUnsubscribe && userUnsubscribe();
     };
-  }, [userId]);
+  }, [userId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const extractUserAchievement = (
     achievement: Achievement
