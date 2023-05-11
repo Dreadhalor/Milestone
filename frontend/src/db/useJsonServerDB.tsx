@@ -81,11 +81,24 @@ const useJsonServerDB = (): Database => {
     });
   };
 
+  const subscribeToGameAchievements =
+    (game_id: string, callback: (achievements: BaseAchievement[]) => void) =>
+    () => {
+      console.log('subscribing to game achievements', game_id, callback);
+    };
+  const subscribeToUserAchievements =
+    (user_id: string, callback: (achievements: UserAchievement[]) => void) =>
+    () => {
+      console.log('subscribing to user achievements', user_id, callback);
+    };
+
   return {
     fetchGameAchievements,
     fetchUserAchievements,
     saveAchievement,
     deleteAchievement,
+    subscribeToGameAchievements,
+    subscribeToUserAchievements,
   };
 };
 

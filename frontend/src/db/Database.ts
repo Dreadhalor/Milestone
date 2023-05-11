@@ -9,4 +9,12 @@ export interface Database {
     game_id: string,
     user_id: string
   ) => Promise<void>;
+  subscribeToUserAchievements: (
+    user_id: string,
+    callback: (achievements: UserAchievement[]) => void
+  ) => () => void;
+  subscribeToGameAchievements: (
+    game_id: string,
+    callback: (achievements: BaseAchievement[]) => void
+  ) => () => void;
 }

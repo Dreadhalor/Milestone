@@ -14,9 +14,7 @@ export const UserMenu = ({ light, height }: Props) => {
   const menuButtonHeight = height || 50;
 
   const showSignInButton = !(signedIn || loading);
-  console.log('showSignInButton:', showSignInButton);
   const onClickHandler = showSignInButton ? signInWithGoogle : handleLogout;
-  // const onClickHandler = handleLogout;
 
   const classes = `user-menu${light ? '-light' : ''} ${
     showSignInButton ? 'signed-out' : ''

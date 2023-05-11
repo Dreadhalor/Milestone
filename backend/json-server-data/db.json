@@ -615,17 +615,31 @@
       "state": "unlocked"
     },
     {
-      "id": "xOAZ36Ibn3DsAMcOulmne0IWOeyA--fallcrate--rename_file",
+      "id": "xOAZ36Ibn3DsAMcOulmne0IWOeyA--fallcrate--move_into_a_file",
       "gameId": "fallcrate",
       "userId": "xOAZ36Ibn3DsAMcOulmne0IWOeyA",
-      "unlockedAt": "2023-05-11T06:18:32.464Z",
+      "unlockedAt": "2023-05-11T06:56:59.740Z",
       "state": "unlocked"
     },
     {
-      "id": "xOAZ36Ibn3DsAMcOulmne0IWOeyA--fallcrate--filler_23",
+      "id": "xOAZ36Ibn3DsAMcOulmne0IWOeyA--fallcrate--filler_36",
       "gameId": "fallcrate",
       "userId": "xOAZ36Ibn3DsAMcOulmne0IWOeyA",
-      "unlockedAt": "2023-05-11T06:18:34.398Z",
+      "unlockedAt": "2023-05-11T06:56:58.638Z",
+      "state": "unlocked"
+    },
+    {
+      "id": "xOAZ36Ibn3DsAMcOulmne0IWOeyA--fallcrate--delete_file",
+      "gameId": "fallcrate",
+      "userId": "xOAZ36Ibn3DsAMcOulmne0IWOeyA",
+      "unlockedAt": "2023-05-11T07:02:17.774Z",
+      "state": "unlocked"
+    },
+    {
+      "id": "xOAZ36Ibn3DsAMcOulmne0IWOeyA--fallcrate--file_into_file",
+      "gameId": "fallcrate",
+      "userId": "xOAZ36Ibn3DsAMcOulmne0IWOeyA",
+      "unlockedAt": "2023-05-11T07:10:01.893Z",
       "state": "unlocked"
     }
   ]
