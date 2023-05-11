@@ -58,11 +58,7 @@ export const UserMenu = ({ light, height }: Props) => {
       dropdownRender={(menu) =>
         // we gotta do this to style the menu + make it disappear immediately when signing out
         React.cloneElement(menu as React.ReactElement, {
-          style: {
-            visibility: showSignInButton ? 'hidden' : 'visible',
-            color: '#ffffff',
-            background: '#383838',
-          },
+          style: { visibility: showSignInButton ? 'hidden' : 'visible' },
         })
       }
     >
