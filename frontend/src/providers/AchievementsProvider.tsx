@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { UserAchievement, BaseAchievement, Achievement } from '@src/types';
 import { useDB } from '@src/hooks/useDB';
-import { useUser } from 'reactfire';
+import { useAuth } from '@hooks/useAuth';
 
 interface AchievementsContextValue {
   gameAchievements: BaseAchievement[];
@@ -28,10 +28,8 @@ export const AchievementsProvider = ({ children }: Props) => {
   );
   const [achievements, setAchievements] = useState<Achievement[]>([]);
 
-  // const [user, setUser] = useState<User | null>(null);
-
   const db = useDB();
-  const { data: user } = useUser();
+  const { userId } = useAuth();
 
   const resetAchievements = async () => {
     const fetchGameAchievements = async () => {
@@ -40,8 +38,9 @@ export const AchievementsProvider = ({ children }: Props) => {
     };
     const fetchUserAchievements = async () => {
       const fetchedAchievements = await db.fetchUserAchievements(
-        user?.uid ?? null
+        userId ?? null
       );
+      console.log('fetchedUserAchievements', fetchedAchievements);
       setUserAchievements(fetchedAchievements);
     };
 
@@ -51,10 +50,10 @@ export const AchievementsProvider = ({ children }: Props) => {
 
   useEffect(() => {
     resetAchievements();
-  }, [user]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [userId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const toggleAchievement = async (achievement: Achievement) => {
-    if (!user) {
+    if (!userId) {
       return;
     }
 
@@ -69,7 +68,7 @@ export const AchievementsProvider = ({ children }: Props) => {
   };
 
   const unlockAchievement = async (achievement: Achievement) => {
-    if (!user) {
+    if (!userId) {
       return;
     }
 
@@ -81,15 +80,15 @@ export const AchievementsProvider = ({ children }: Props) => {
   };
 
   const lockAchievement = async (achievement: Achievement) => {
-    if (!user) {
+    if (!userId) {
       return;
     }
 
-    const userAchievement = extractUserAchievement(achievement);
-    userAchievement.unlockedAt = null;
-    userAchievement.state = 'locked';
-
-    return await db.saveAchievement(userAchievement);
+    return await db.deleteAchievement(
+      achievement.id,
+      achievement.gameId,
+      achievement.userId
+    );
   };
 
   const extractUserAchievement = (
@@ -113,7 +112,7 @@ export const AchievementsProvider = ({ children }: Props) => {
       userAchievement = {
         id: gameAchievement.id,
         gameId: 'fallcrate',
-        userId: user?.uid ?? '',
+        userId: userId ?? '',
         unlockedAt: null,
         state: 'locked',
       };
@@ -148,6 +147,70 @@ export const AchievementsProvider = ({ children }: Props) => {
 
     setAchievements(achievements);
   }, [gameAchievements, userAchievements]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const onMergeAccounts = async (localUserId: string, remoteUserId: string) => {
+    Promise.all([
+      db.fetchUserAchievements(localUserId),
+      db.fetchUserAchievements(remoteUserId),
+    ])
+      .then(([localUserAchievements, remoteUserAchievements]) => {
+        return localUserAchievements.map((localUserAchievement) => {
+          // if the remote user doesn't have the achievement, just update the userId
+          // and save it while deleting the local one
+          const remoteUserAchievement = remoteUserAchievements.find(
+            (remoteUserAchievement) =>
+              remoteUserAchievement.id === localUserAchievement.id &&
+              remoteUserAchievement.gameId === localUserAchievement.gameId
+          );
+          if (!remoteUserAchievement) {
+            const localUserAchievementCopy = { ...localUserAchievement };
+            localUserAchievementCopy.userId = remoteUserId;
+            Promise.all([
+              db.saveAchievement(localUserAchievementCopy),
+              db.deleteAchievement(
+                localUserAchievement.id,
+                localUserAchievement.gameId,
+                localUserAchievement.userId
+              ),
+            ]);
+          }
+        });
+      })
+      .then(() => {
+        resetAchievements();
+      });
+  };
+
+  type MergeAccountsEventDetail = {
+    localUserId: string;
+    remoteUserId: string;
+  };
+  // In AchievementsProvider:
+  useEffect(
+    () => {
+      const handleMergeAccounts = (
+        mergeAccountsEvent: CustomEvent<MergeAccountsEventDetail>
+      ) => {
+        const { localUserId, remoteUserId } = mergeAccountsEvent.detail;
+        console.log('mergeAccounts event received', mergeAccountsEvent.detail);
+        // Run your merge function here using event.detail.userId
+        onMergeAccounts(localUserId, remoteUserId);
+      };
+
+      window.addEventListener(
+        'mergeAccounts',
+        handleMergeAccounts as EventListener
+      );
+
+      return () => {
+        window.removeEventListener(
+          'mergeAccounts',
+          handleMergeAccounts as EventListener
+        );
+      };
+    },
+    [] // eslint-disable-line react-hooks/exhaustive-deps
+  );
 
   return (
     <AchievementsContext.Provider

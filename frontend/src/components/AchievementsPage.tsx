@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
 import { useAchievements } from '@src/hooks/useAchievements';
-import { useSigninCheck } from 'reactfire';
 import { Achievement } from '@src/types';
 import AchievementsGrid from './AchievementsGrid';
+import { useAuth } from '@hooks/useAuth';
 
 const AchievementsPage: React.FC = () => {
-  const signInCheck = useSigninCheck();
-  const { status, data: signInCheckResult } = signInCheck;
+  const { loading, userId } = useAuth();
   const [selectedAchievement, setSelectedAchievement] =
     useState<Achievement | null>(null);
 
   const { achievements } = useAchievements();
-
-  // console.log('sign in result:', signInCheckResult);
 
   const selectAchievement = (achievement_id: string | null) => {
     const achievement =
@@ -21,7 +18,7 @@ const AchievementsPage: React.FC = () => {
     setSelectedAchievement(achievement);
   };
 
-  if (status === 'loading') return <div>Loading...</div>;
+  if (loading) return <div>Loading...</div>;
 
   return (
     <div
@@ -31,7 +28,7 @@ const AchievementsPage: React.FC = () => {
       <span className='mx-auto flex p-3 font-sans text-4xl'>
         Dreadhalor's Treasure Hunt
       </span>
-      {signInCheckResult.signedIn === true && (
+      {userId && (
         <div className='relative overflow-auto'>
           <AchievementsGrid
             selectedAchievement={selectedAchievement}

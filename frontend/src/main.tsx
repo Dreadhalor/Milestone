@@ -3,15 +3,16 @@ import ReactDOM from 'react-dom/client';
 import './index.scss';
 import App from './App';
 import { AchievementsProvider } from '@providers/AchievementsProvider';
-import { MilestoneProvider } from 'milestone-components';
 import 'milestone-components/styles.scss';
+import { AuthProvider } from './providers/AuthProvider';
+// import { MilestoneProvider } from 'milestone-components';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <MilestoneProvider>
+    <AuthProvider>
       <AchievementsProvider>
         <App />
       </AchievementsProvider>
-    </MilestoneProvider>
+    </AuthProvider>
   </React.StrictMode>
 );

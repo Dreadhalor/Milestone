@@ -5,6 +5,11 @@ interface BaseAchievement {
   description: string;
 }
 
+interface GameAchievements {
+  gameId: string;
+  achievements: BaseAchievement[];
+}
+
 interface UserAchievement {
   id: string;
   gameId: string;
@@ -15,9 +20,4 @@ interface UserAchievement {
 
 interface Achievement extends BaseAchievement, UserAchievement {}
 
-// interface User {
-//   id: string;
-//   username: string;
-// }
-
-export type { BaseAchievement, UserAchievement, Achievement };
+export type { BaseAchievement, UserAchievement, Achievement, GameAchievements };

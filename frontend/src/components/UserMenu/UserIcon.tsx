@@ -1,28 +1,30 @@
-import { User } from 'firebase/auth';
 import { createAvatar } from '@dicebear/core';
 import { thumbs } from '@dicebear/collection';
 import { MoonLoader } from 'react-spinners';
 import { BiMenu } from 'react-icons/bi';
 
 type Props = {
-  user: User | null;
+  userId: string | null;
   loading: boolean;
   size?: number;
+  light?: boolean;
 };
 
-const UserIcon = ({ user, loading, size }: Props) => {
+const UserIcon = ({ userId, loading, size, light }: Props) => {
   const profileButtonSize = size ?? 50;
 
-  if (!user) {
+  const color = light ? '#000000' : '#ffffff';
+
+  if (!userId) {
     return loading ? (
-      <MoonLoader color='#ffffff' size={profileButtonSize / 2} />
+      <MoonLoader color={color} size={profileButtonSize / 2} />
     ) : (
-      <BiMenu color='#ffffff' />
+      <BiMenu color={color} />
     );
   }
 
   const avatar = createAvatar(thumbs, {
-    seed: user?.uid,
+    seed: userId,
     scale: 80,
     radius: 50,
     translateY: -10,

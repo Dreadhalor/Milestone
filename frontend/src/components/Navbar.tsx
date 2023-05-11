@@ -1,4 +1,4 @@
-import { UserMenu } from 'milestone-components';
+import { UserMenu } from './UserMenu/UserMenu';
 
 const Navbar = () => {
   return (
