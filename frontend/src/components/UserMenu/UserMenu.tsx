@@ -30,7 +30,7 @@ export const UserMenu = ({ light, height }: Props) => {
   const items: MenuProps['items'] = [
     {
       label: (
-        <span className='flex items-center gap-[8px]'>
+        <span className='flex items-center gap-[10px]'>
           <FiLogIn />
           Sign out
         </span>
@@ -55,12 +55,18 @@ export const UserMenu = ({ light, height }: Props) => {
       trigger={['click']}
       open={showMenu}
       onOpenChange={handleOpenChange}
-      dropdownRender={(menu) =>
-        // we gotta do this to style the menu + make it disappear immediately when signing out
-        React.cloneElement(menu as React.ReactElement, {
-          style: { visibility: showSignInButton ? 'hidden' : 'visible' },
-        })
-      }
+      dropdownRender={(menu) => (
+        // this is just a hack to push the menu down a bit
+        <div className='relative'>
+          {/* we gotta do this to style the menu + make it disappear immediately when signing out */}
+          {React.cloneElement(menu as React.ReactElement, {
+            style: {
+              visibility: showSignInButton ? 'hidden' : 'visible',
+              top: '4px',
+            },
+          })}
+        </div>
+      )}
     >
       <button
         onClick={onClickHandler}

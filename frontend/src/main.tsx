@@ -17,7 +17,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
             components: {
               Dropdown: {
                 colorBgElevated: '#383838',
-                controlItemBgHover: '#525252',
+                controlItemBgHover: '#484848',
               },
             },
           }}

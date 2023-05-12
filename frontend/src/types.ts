@@ -1,25 +1,37 @@
 import { Timestamp } from 'firebase/firestore';
 
-interface BaseAchievement {
-  id: string;
-  gameId: string;
-  title: string;
-  description: string;
-}
-
 interface GameAchievements {
   gameId: string;
   achievements: BaseAchievement[];
 }
 
-interface UserAchievement {
+interface BaseAchievementData {
+  title: string;
+  description: string;
+}
+interface BaseAchievement extends BaseAchievementData {
   id: string;
   gameId: string;
-  userId: string;
+}
+
+interface UserAchievementData {
   unlockedAt: Timestamp | null;
   state: 'locked' | 'newly_unlocked' | 'unlocked';
 }
 
+interface UserAchievement extends UserAchievementData {
+  id: string;
+  gameId: string;
+  userId: string;
+}
+
 interface Achievement extends BaseAchievement, UserAchievement {}
 
-export type { BaseAchievement, UserAchievement, Achievement, GameAchievements };
+export type {
+  BaseAchievementData,
+  BaseAchievement,
+  UserAchievementData,
+  UserAchievement,
+  Achievement,
+  GameAchievements,
+};

@@ -8,8 +8,15 @@ import {
   deleteDoc,
   connectFirestoreEmulator,
   onSnapshot,
+  QueryDocumentSnapshot,
+  DocumentData,
 } from 'firebase/firestore';
-import { BaseAchievement, UserAchievement } from '@src/types';
+import {
+  BaseAchievement,
+  BaseAchievementData,
+  UserAchievementData,
+  UserAchievement,
+} from '@src/types';
 import { Database } from '@src/db/Database';
 import { getApp, getApps, initializeApp } from 'firebase/app';
 
@@ -32,13 +39,34 @@ if (location.hostname === 'localhost') {
   connectFirestoreEmulator(db, 'localhost', 8080);
 }
 
+const convertDBUserAchievement = (
+  doc: QueryDocumentSnapshot<DocumentData>,
+  userId: string
+) => {
+  const data = doc.data() as UserAchievementData;
+  return {
+    id: doc.id,
+    gameId: 'fallcrate',
+    userId,
+    ...data,
+  };
+};
+const convertDBGameAchievement = (doc: QueryDocumentSnapshot<DocumentData>) => {
+  const data = doc.data() as BaseAchievementData;
+  return {
+    id: doc.id,
+    gameId: 'fallcrate',
+    ...data,
+  };
+};
+
 const useFirestoreDB = (): Database => {
   const fetchGameAchievements = async (
     gameId: string
   ): Promise<BaseAchievement[]> => {
     const q = query(collection(db, `games/${gameId}/achievements`));
     const querySnapshot = await getDocs(q);
-    return querySnapshot.docs.map((doc) => doc.data() as BaseAchievement);
+    return querySnapshot.docs.map((doc) => convertDBGameAchievement(doc));
   };
 
   const fetchUserAchievements = async (
@@ -50,18 +78,19 @@ const useFirestoreDB = (): Database => {
       `users/${userId}/games/fallcrate/achievements`
     );
     const querySnapshot = await getDocs(achievementsCollection);
-    return querySnapshot.docs.map((doc) => doc.data() as UserAchievement);
+    return querySnapshot.docs.map((doc) =>
+      convertDBUserAchievement(doc, userId)
+    );
   };
 
   const saveAchievement = async (
     achievement: UserAchievement
   ): Promise<UserAchievement> => {
+    const { id, gameId, userId, state, unlockedAt } = achievement;
+    const dbAchievement: UserAchievementData = { state, unlockedAt };
     await setDoc(
-      doc(
-        db,
-        `users/${achievement.userId}/games/${achievement.gameId}/achievements/${achievement.id}`
-      ),
-      achievement
+      doc(db, `users/${userId}/games/${gameId}/achievements/${id}`),
+      dbAchievement
     );
     return achievement;
   };
@@ -85,8 +114,8 @@ const useFirestoreDB = (): Database => {
   ) => {
     const q = query(collection(db, `games/${gameId}/achievements`));
     return onSnapshot(q, (querySnapshot) => {
-      const achievements = querySnapshot.docs.map(
-        (doc) => doc.data() as BaseAchievement
+      const achievements = querySnapshot.docs.map((doc) =>
+        convertDBGameAchievement(doc)
       );
       callback(achievements);
     });
@@ -104,8 +133,8 @@ const useFirestoreDB = (): Database => {
     );
 
     return onSnapshot(achievementsCollection, (querySnapshot) => {
-      const achievements = querySnapshot.docs.map(
-        (doc) => doc.data() as UserAchievement
+      const achievements = querySnapshot.docs.map((doc) =>
+        convertDBUserAchievement(doc, userId)
       );
       callback(achievements);
     });
