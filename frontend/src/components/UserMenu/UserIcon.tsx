@@ -33,7 +33,9 @@ const UserIcon = ({ userId, loading, size, light }: Props) => {
   const svg = avatar.toDataUriSync();
 
   return (
+    // return an image, but don't make it draggable
     <img
+      draggable={false}
       src={svg}
       alt='User avatar'
       style={{
