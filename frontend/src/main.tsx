@@ -6,7 +6,7 @@ import { AchievementsProvider } from '@providers/AchievementsProvider';
 import 'milestone-components/styles.scss';
 import { AuthProvider } from './providers/AuthProvider';
 import { ConfigProvider } from 'antd';
-// import { MilestoneProvider } from 'milestone-components';
+import { App as AntApp } from 'antd';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -19,10 +19,15 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                 colorBgElevated: '#383838',
                 controlItemBgHover: '#484848',
               },
+              Modal: {
+                wireframe: true,
+              },
             },
           }}
         >
-          <App />
+          <AntApp>
+            <App />
+          </AntApp>
         </ConfigProvider>
       </AchievementsProvider>
     </AuthProvider>

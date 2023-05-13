@@ -9,6 +9,7 @@ interface AchievementsContextValue {
   userAchievements: UserAchievement[];
   achievements: Achievement[];
   unlockAchievement: (achievement: Achievement) => Promise<void>;
+  saveAchievement: (achievement: Achievement) => Promise<void>;
   toggleAchievement: (achievement: Achievement) => Promise<void>;
 }
 
@@ -49,6 +50,13 @@ export const AchievementsProvider = ({ children }: Props) => {
     };
   }, [userId]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const saveAchievement = async (achievement: Achievement) => {
+    if (!userId) return;
+
+    const userAchievement = extractUserAchievement(achievement);
+    await db.saveAchievement(userAchievement);
+  };
+
   const extractUserAchievement = (
     achievement: Achievement
   ): UserAchievement => {
@@ -56,7 +64,7 @@ export const AchievementsProvider = ({ children }: Props) => {
       id: achievement.id,
       gameId: 'fallcrate',
       userId: achievement.userId ?? '',
-      unlockedAt: null,
+      unlockedAt: achievement.unlockedAt ?? null,
       state: achievement.state,
     };
   };
@@ -68,8 +76,10 @@ export const AchievementsProvider = ({ children }: Props) => {
     if (!userId) return;
 
     const userAchievement = extractUserAchievement(achievement);
-    userAchievement.state = state;
-    if (state === 'unlocked') userAchievement.unlockedAt = Timestamp.now();
+    if (state === 'unlocked') {
+      userAchievement.state = 'newly_unlocked';
+      userAchievement.unlockedAt = Timestamp.now();
+    }
 
     state === 'unlocked'
       ? await db.saveAchievement(userAchievement)
@@ -195,6 +205,7 @@ export const AchievementsProvider = ({ children }: Props) => {
         userAchievements,
         achievements,
         unlockAchievement,
+        saveAchievement,
         toggleAchievement,
       }}
     >

@@ -1,20 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAchievements } from '@src/hooks/useAchievements';
 import { Achievement } from '@src/types';
 import AchievementsGrid from './AchievementsGrid';
 import { useAuth } from '@hooks/useAuth';
 
-const AchievementsPage: React.FC = () => {
+const AchievementsPage = () => {
   const { loading, userId } = useAuth();
   const [selectedAchievement, setSelectedAchievement] =
     useState<Achievement | null>(null);
 
-  const { achievements } = useAchievements();
+  const { achievements, saveAchievement } = useAchievements();
 
   const selectAchievement = (achievement_id: string | null) => {
     const achievement =
       achievements.find((achievement) => achievement.id === achievement_id) ??
       null;
+    if (
+      selectedAchievement?.state === 'newly_unlocked' &&
+      achievement?.id !== selectedAchievement?.id
+    ) {
+      selectedAchievement.state = 'unlocked';
+      saveAchievement(selectedAchievement);
+    }
+    // if (achievement && achievement.state === 'newly_unlocked') {
+    //   achievement.state = 'unlocked';
+    //   saveAchievement(achievement);
+    // }
     setSelectedAchievement(achievement);
   };
 
@@ -22,7 +33,7 @@ const AchievementsPage: React.FC = () => {
     // reset selected achievement when achievements change
     // it'd be nice to just do this only when the achievement has no
     // unlocked neighbors, but I do NOT want to deal with that right now
-    selectAchievement(null);
+    if (selectedAchievement?.state === 'locked') selectAchievement(null);
   }, [achievements]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (loading) return <div>Loading...</div>;

@@ -1,9 +1,12 @@
-import { Dropdown, MenuProps } from 'antd';
+import { Badge, Dropdown, MenuProps, Modal } from 'antd';
 import SignInButton from './SignInButton';
 import UserIcon from './UserIcon';
 import { useAuth } from '@hooks/useAuth';
 import React, { useState } from 'react';
 import { FiLogIn } from 'react-icons/fi';
+import { SlTrophy } from 'react-icons/sl';
+import AchievementsPage from '@components/AchievementsPage';
+import { useAchievements } from '@hooks/useAchievements';
 
 type Props = {
   light?: boolean;
@@ -13,8 +16,16 @@ type Props = {
 export const UserMenu = ({ light, height }: Props) => {
   const { loading, userId, signedIn, signInWithGoogle, handleLogout } =
     useAuth();
+  const { achievements } = useAchievements();
+  const new_achievements = achievements.filter(
+    (achievement) => achievement.state === 'newly_unlocked'
+  ).length;
 
   const menuButtonHeight = height || 50;
+  const badgeOffset = {
+    x: -6,
+    y: 10,
+  };
 
   const [showMenu, setShowMenu] = useState(false);
 
@@ -31,23 +42,41 @@ export const UserMenu = ({ light, height }: Props) => {
     {
       label: (
         <span className='flex items-center gap-[10px]'>
+          <SlTrophy />
+          Achievements
+        </span>
+      ),
+      style: { color: 'white' },
+      key: 'achievements',
+    },
+    {
+      label: (
+        <span className='flex items-center gap-[10px]'>
           <FiLogIn />
           Sign out
         </span>
       ),
       style: { color: 'white' },
-      key: '0',
+      key: 'sign-out',
     },
   ];
 
   const handleOpenChange = (flag: boolean) => {
     if (showSignInButton) return setShowMenu(false);
-    setShowMenu(flag);
+    // this feels hacky but the menu keeps opening when the modal closes
+    if (modalOpen) setShowMenu(false);
+    else setShowMenu(flag);
   };
 
   const handleMenuClick: MenuProps['onClick'] = (e) => {
-    if (e.key === '0') handleLogout();
+    if (e.key === 'sign-out') handleLogout();
+    if (e.key === 'achievements') {
+      setShowMenu(false);
+      setModalOpen(true);
+    }
   };
+
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <Dropdown
@@ -68,26 +97,50 @@ export const UserMenu = ({ light, height }: Props) => {
         </div>
       )}
     >
-      <button
-        onClick={onClickHandler}
-        className={`user-menu flex items-center justify-center overflow-hidden rounded-full transition-colors duration-100 ${classes}`}
-        style={{
-          borderWidth: showSignInButton ? '1px' : '2px',
-          height: `${menuButtonHeight}px`,
-          width: showSignInButton ? 'auto' : `${menuButtonHeight}px`,
-        }}
+      <Badge
+        count={new_achievements}
+        overflowCount={99}
+        offset={[badgeOffset.x, badgeOffset.y]}
+        size='default'
+        className='cursor-pointer'
       >
-        {showSignInButton ? (
-          <SignInButton height={menuButtonHeight} />
-        ) : (
-          <UserIcon
-            userId={userId}
-            loading={loading}
-            size={menuButtonHeight}
-            light={light}
-          />
-        )}
-      </button>
+        <button
+          onClick={onClickHandler}
+          className={`user-menu flex items-center justify-center overflow-hidden rounded-full transition-colors duration-100 ${classes}`}
+          style={{
+            borderWidth: showSignInButton ? '1px' : '2px',
+            height: `${menuButtonHeight}px`,
+            width: showSignInButton ? 'auto' : `${menuButtonHeight}px`,
+          }}
+        >
+          <>
+            {showSignInButton ? (
+              <SignInButton height={menuButtonHeight} />
+            ) : (
+              <UserIcon
+                userId={userId}
+                loading={loading}
+                size={menuButtonHeight}
+                light={light}
+              />
+            )}
+            <Modal
+              centered
+              open={modalOpen}
+              onCancel={() => setModalOpen(false)}
+              bodyStyle={{ marginInline: -1, padding: 0 }}
+              footer={null}
+            >
+              <div
+                className='rounded-lg'
+                style={{ backgroundColor: 'rgb(37 44 59)' }}
+              >
+                <AchievementsPage />
+              </div>
+            </Modal>
+          </>
+        </button>
+      </Badge>
     </Dropdown>
   );
 };

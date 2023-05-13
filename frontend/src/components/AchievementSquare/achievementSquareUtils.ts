@@ -10,6 +10,9 @@ export type Neighbors = {
   right: Achievement | null;
 };
 
+const unlockedStates = ['unlocked', 'newly_unlocked'];
+const isUnlocked = (state: string) => unlockedStates.includes(state);
+
 export const getNeighbors = (
   achievement_id: string,
   achievements: Achievement[]
@@ -40,19 +43,30 @@ export const getNeighbors = (
   };
 };
 
-const checkNeighborState = (
-  state: 'locked' | 'unlocked',
+const checkOneNeighborState = (
+  states: ('locked' | 'unlocked' | null)[],
   neighbors: Neighbors,
-  directions: Direction[]
+  direction: Direction
 ) => {
-  return directions.every((direction) => {
-    const neighbor = neighbors[direction];
-    if (!neighbor) {
-      if (state === 'unlocked') return true;
-      return false;
-    }
-    return neighbor.state === state;
-  });
+  const neighbor = neighbors[direction];
+  if (!neighbor) return states.includes(null);
+
+  if (states.includes('unlocked')) return isUnlocked(neighbor.state);
+  return states.includes(neighbor.state as 'locked' | null);
+};
+export const checkNeighborState = (
+  states: ('locked' | 'unlocked' | null)[],
+  neighbors: Neighbors,
+  directions: Direction[] = ['top', 'bottom', 'left', 'right'],
+  all = false
+) => {
+  if (all)
+    return directions.every((direction) =>
+      checkOneNeighborState(states, neighbors, direction)
+    );
+  return directions.some((direction) =>
+    checkOneNeighborState(states, neighbors, direction)
+  );
 };
 
 const getBorder = (
@@ -64,7 +78,7 @@ const getBorder = (
 ): string => {
   if (is_selected) return '2px solid rgba(255,255,255,1)';
   if (is_locked) {
-    if (checkNeighborState('unlocked', neighbors, [direction])) {
+    if (checkNeighborState(['unlocked', null], neighbors, [direction])) {
       if (direction === 'left' || direction === 'top')
         return '4px solid rgba(255,255,255,0.3)';
       return '4px solid rgba(0,0,0,0.3)';
@@ -74,7 +88,9 @@ const getBorder = (
   return 'none';
 };
 const getBorderRadius = (directions: Direction[], neighbors: Neighbors) => {
-  return checkNeighborState('unlocked', neighbors, directions) ? 0 : 0;
+  return checkNeighborState(['unlocked', null], neighbors, directions, true)
+    ? 4
+    : 0;
 };
 
 type BorderParams = [

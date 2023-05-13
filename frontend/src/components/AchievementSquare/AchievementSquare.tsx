@@ -1,7 +1,12 @@
 import { Achievement } from '@src/types';
 import { useAchievements } from '@hooks/useAchievements';
-import { constructBorders, getNeighbors } from './achievementSquareUtils';
+import {
+  checkNeighborState,
+  constructBorders,
+  getNeighbors,
+} from './achievementSquareUtils';
 import AchievementPopover from './AchievementPopover';
+import { FaExclamationCircle } from 'react-icons/fa';
 
 type AchievementSquareProps = {
   achievement: Achievement;
@@ -16,12 +21,9 @@ const AchievementSquare = ({
   const { achievements } = useAchievements();
   const is_locked = achievement.state === 'locked';
   const is_selected = selectedAchievement?.id === achievement.id;
+  const newly_unlocked = achievement.state === 'newly_unlocked';
   const neighbors = getNeighbors(achievement.id, achievements);
-  const has_unlocked_neighbors =
-    neighbors.top?.state === 'unlocked' ||
-    neighbors.bottom?.state === 'unlocked' ||
-    neighbors.left?.state === 'unlocked' ||
-    neighbors.right?.state === 'unlocked';
+  const has_unlocked_neighbors = checkNeighborState(['unlocked'], neighbors);
 
   const bg_colors = {
     locked: 'rgb(44,3,21)',
@@ -60,13 +62,24 @@ const AchievementSquare = ({
     <AchievementPopover achievement={achievement} open={is_selected}>
       <div className='relative pb-[100%]'>
         <div
-          className={`${!is_selected ? 'transition-all' : ''}`}
+          className={`relative flex ${!is_selected ? 'transition-all' : ''}`}
           style={{ ...innerSquareStyle, ...style }}
           onClick={handleClick}
           onDoubleClick={() => {
             toggleAchievement(achievement);
           }}
-        ></div>
+        >
+          {newly_unlocked && (
+            <FaExclamationCircle
+              style={{
+                color: 'yellow',
+                position: 'absolute',
+                top: 5,
+                right: 5,
+              }}
+            />
+          )}
+        </div>
       </div>
     </AchievementPopover>
   );
