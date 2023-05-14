@@ -64,7 +64,7 @@ const AchievementSquare = ({
         {newly_unlocked && (
           <FaExclamationCircle
             style={{
-              color: 'yellow',
+              color: 'gold',
               position: 'absolute',
               top: 5,
               right: 5,

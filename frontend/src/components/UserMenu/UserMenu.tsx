@@ -41,8 +41,10 @@ export const UserMenu = ({ light, height }: Props) => {
   const items: MenuProps['items'] = [
     {
       label: (
-        <span className='flex items-center gap-[10px]'>
-          <SlTrophy />
+        <span className='flex items-center gap-[16px]'>
+          <Badge count={new_achievements} size='small'>
+            <SlTrophy style={{ color: 'white' }} />
+          </Badge>
           Achievements
         </span>
       ),
@@ -51,7 +53,7 @@ export const UserMenu = ({ light, height }: Props) => {
     },
     {
       label: (
-        <span className='flex items-center gap-[10px]'>
+        <span className='flex items-center gap-[16px]'>
           <FiLogIn />
           Sign out
         </span>
@@ -124,12 +126,14 @@ export const UserMenu = ({ light, height }: Props) => {
                 light={light}
               />
             )}
+            {/* destroyOnClose is so that popovers go away when the modal closes */}
             <Modal
               centered
               open={modalOpen}
               onCancel={() => setModalOpen(false)}
               bodyStyle={{ marginInline: -1, padding: 0 }}
               footer={null}
+              closable={false}
               destroyOnClose
             >
               <div

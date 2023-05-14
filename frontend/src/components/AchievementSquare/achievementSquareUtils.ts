@@ -77,6 +77,14 @@ export const checkNeighborState = (
   );
 };
 
+export const hasUnlockedNeighbors = (
+  achievement: Achievement,
+  achievements: Achievement[]
+) => {
+  const neighbors = getNeighbors(achievement.id, achievements);
+  return checkNeighborState(['unlocked'], neighbors);
+};
+
 const getBorder = (
   direction: Direction,
   is_selected: boolean,

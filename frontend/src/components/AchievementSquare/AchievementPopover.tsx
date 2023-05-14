@@ -9,19 +9,26 @@ type Props = {
 };
 
 const AchievementPopover = ({ children, achievement, open }: Props) => {
-  const { unlockedAt } = achievement;
+  const { unlockedAt, state } = achievement;
   const popoverContent = (
     <div className='flex max-w-[300px] flex-col gap-[2px]'>
       {unlockedAt && (
-        <span className='text-sm text-gray-400'>
-          {unlockedAt.toDate().toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          } as Intl.DateTimeFormatOptions)}
-        </span>
+        <div className='flex items-center gap-[8px]'>
+          <span className='text-sm text-gray-400'>
+            {unlockedAt.toDate().toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            } as Intl.DateTimeFormatOptions)}
+          </span>
+          {state === 'newly_unlocked' && (
+            <div className='rounded-full bg-[#00bfff] px-[6px] py-[1px] text-xs text-white'>
+              New!
+            </div>
+          )}
+        </div>
       )}
-      <span className='mb-[6px] text-2xl font-bold text-white'>
+      <span className='mb-[4px] text-2xl font-bold text-white'>
         {achievement.title}
       </span>
       <span className='text-white'>{achievement.description}</span>

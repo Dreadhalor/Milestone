@@ -3,6 +3,7 @@ import { useAchievements } from '@src/hooks/useAchievements';
 import { Achievement } from '@src/types';
 import AchievementsGrid from './AchievementsGrid';
 import { useAuth } from '@hooks/useAuth';
+import { hasUnlockedNeighbors } from './AchievementSquare/achievementSquareUtils';
 
 const AchievementsPage = () => {
   const { loading, userId } = useAuth();
@@ -30,10 +31,12 @@ const AchievementsPage = () => {
   };
 
   useEffect(() => {
-    // reset selected achievement when achievements change
-    // it'd be nice to just do this only when the achievement has no
-    // unlocked neighbors, but I do NOT want to deal with that right now
-    if (selectedAchievement?.state === 'locked') selectAchievement(null);
+    // reset selected achievement when achievements change &:
+    // - selected achievement is locked and has no unlocked neighbors
+    if (!selectedAchievement) return;
+    if (selectedAchievement?.state !== 'locked') return;
+    if (hasUnlockedNeighbors(selectedAchievement, achievements)) return;
+    selectAchievement(null);
   }, [achievements]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (loading) return <div>Loading...</div>;
