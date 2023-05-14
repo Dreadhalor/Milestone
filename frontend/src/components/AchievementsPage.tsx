@@ -4,7 +4,22 @@ import { Achievement } from '@src/types';
 import AchievementsGrid from './AchievementsGrid';
 import { useAuth } from '@hooks/useAuth';
 
-const AchievementsPage = () => {
+type Props = {
+  modal: boolean;
+};
+
+const AchievementsPage = ({ modal }: Props) => {
+  useEffect(() => {
+    console.log('modal is', modal ? 'true' : 'false');
+  }, [modal]);
+
+  useEffect(() => {
+    console.log('AchievementsPage mounted');
+    return () => {
+      console.log('AchievementsPage unmounted');
+    };
+  }, []);
+
   const { loading, userId } = useAuth();
   const [selectedAchievement, setSelectedAchievement] =
     useState<Achievement | null>(null);

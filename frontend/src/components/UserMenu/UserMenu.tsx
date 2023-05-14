@@ -77,6 +77,10 @@ export const UserMenu = ({ light, height }: Props) => {
   };
 
   const [modalOpen, setModalOpen] = useState(false);
+  const closeModal = () => {
+    console.log('close modal from parent');
+    setModalOpen(false);
+  };
 
   return (
     <Dropdown
@@ -127,15 +131,16 @@ export const UserMenu = ({ light, height }: Props) => {
             <Modal
               centered
               open={modalOpen}
-              onCancel={() => setModalOpen(false)}
+              onCancel={closeModal}
               bodyStyle={{ marginInline: -1, padding: 0 }}
               footer={null}
+              destroyOnClose
             >
               <div
                 className='rounded-lg'
                 style={{ backgroundColor: 'rgb(37 44 59)' }}
               >
-                <AchievementsPage />
+                <AchievementsPage modal={modalOpen} />
               </div>
             </Modal>
           </>

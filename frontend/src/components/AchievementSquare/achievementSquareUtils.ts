@@ -13,12 +13,20 @@ export type Neighbors = {
 const unlockedStates = ['unlocked', 'newly_unlocked'];
 const isUnlocked = (state: string) => unlockedStates.includes(state);
 
+export const getAchievementGridIndex = (
+  achievement_id: string,
+  achievements: Achievement[]
+): number => {
+  return achievements.findIndex((a) => a.id === achievement_id);
+};
+
 export const getNeighbors = (
   achievement_id: string,
   achievements: Achievement[]
 ): Neighbors => {
-  const achievement_index = achievements.findIndex(
-    (a) => a.id === achievement_id
+  const achievement_index = getAchievementGridIndex(
+    achievement_id,
+    achievements
   );
   if (achievement_index === -1)
     return {

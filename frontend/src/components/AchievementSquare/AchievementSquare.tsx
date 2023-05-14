@@ -61,25 +61,24 @@ const AchievementSquare = ({
   return (
     <AchievementPopover achievement={achievement} open={is_selected}>
       <div className='relative pb-[100%]'>
+        {newly_unlocked && (
+          <FaExclamationCircle
+            style={{
+              color: 'yellow',
+              position: 'absolute',
+              top: 5,
+              right: 5,
+            }}
+          />
+        )}
         <div
-          className={`relative flex ${!is_selected ? 'transition-all' : ''}`}
+          className={`flex ${!is_selected ? 'transition-all' : ''}`}
           style={{ ...innerSquareStyle, ...style }}
           onClick={handleClick}
           onDoubleClick={() => {
             toggleAchievement(achievement);
           }}
-        >
-          {newly_unlocked && (
-            <FaExclamationCircle
-              style={{
-                color: 'yellow',
-                position: 'absolute',
-                top: 5,
-                right: 5,
-              }}
-            />
-          )}
-        </div>
+        ></div>
       </div>
     </AchievementPopover>
   );
