@@ -1,12 +1,15 @@
-import { Badge, Dropdown, MenuProps, Modal } from 'antd';
+/// <reference types="vite-plugin-svgr/client" />
+import { Badge, Dropdown, MenuProps } from 'antd';
 import SignInButton from './SignInButton';
 import UserIcon from './UserIcon';
 import { useAuth } from '@hooks/useAuth';
 import React, { useState } from 'react';
 import { FiLogIn } from 'react-icons/fi';
 import { SlTrophy } from 'react-icons/sl';
-import AchievementsPage from '@components/AchievementsPage';
 import { useAchievements } from '@hooks/useAchievements';
+import { BsBell, BsBellSlashFill } from 'react-icons/bs';
+import { RiNotificationBadgeLine } from 'react-icons/ri';
+import { ReactComponent as BadgesOff } from '@assets/badges-off-icon.svg';
 
 type Props = {
   light?: boolean;
@@ -16,7 +19,14 @@ type Props = {
 export const UserMenu = ({ light, height }: Props) => {
   const { loading, userId, signedIn, signInWithGoogle, handleLogout } =
     useAuth();
-  const { achievements } = useAchievements();
+  const {
+    achievements,
+    modalOpen,
+    setModalOpen,
+    userMenuRef,
+    userPreferences: { showNotifications, showBadges },
+    editUserPreferences,
+  } = useAchievements();
   const new_achievements = achievements.filter(
     (achievement) => achievement.state === 'newly_unlocked'
   ).length;
@@ -42,7 +52,7 @@ export const UserMenu = ({ light, height }: Props) => {
     {
       label: (
         <span className='flex items-center gap-[16px]'>
-          <Badge count={new_achievements} size='small'>
+          <Badge count={showBadges ? new_achievements : 0} size='small'>
             <SlTrophy style={{ color: 'white' }} />
           </Badge>
           Achievements
@@ -50,6 +60,34 @@ export const UserMenu = ({ light, height }: Props) => {
       ),
       style: { color: 'white' },
       key: 'achievements',
+    },
+    {
+      label: (
+        <span className='flex items-center gap-[16px]'>
+          {showNotifications ? (
+            <BsBell style={{ color: 'white' }} />
+          ) : (
+            <BsBellSlashFill style={{ color: 'white' }} />
+          )}
+          Toggle Notifications
+        </span>
+      ),
+      style: { color: 'white' },
+      key: 'toggle-notifications',
+    },
+    {
+      label: (
+        <span className='flex items-center gap-[16px]'>
+          {showBadges ? (
+            <RiNotificationBadgeLine style={{ color: 'white' }} />
+          ) : (
+            <BadgesOff style={{ fill: 'white' }} width={14} height={14} />
+          )}
+          Toggle Badges
+        </span>
+      ),
+      style: { color: 'white' },
+      key: 'toggle-badges',
     },
     {
       label: (
@@ -76,9 +114,17 @@ export const UserMenu = ({ light, height }: Props) => {
       setShowMenu(false);
       setModalOpen(true);
     }
+    if (e.key === 'toggle-notifications') {
+      editUserPreferences({
+        showNotifications: !showNotifications,
+      });
+    }
+    if (e.key === 'toggle-badges') {
+      editUserPreferences({
+        showBadges: !showBadges,
+      });
+    }
   };
-
-  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <Dropdown
@@ -100,13 +146,14 @@ export const UserMenu = ({ light, height }: Props) => {
       )}
     >
       <Badge
-        count={new_achievements}
+        count={showBadges ? new_achievements : 0}
         overflowCount={99}
         offset={[badgeOffset.x, badgeOffset.y]}
         size='default'
         className='cursor-pointer'
       >
         <button
+          ref={userMenuRef}
           onClick={onClickHandler}
           className={`user-menu flex items-center justify-center overflow-hidden rounded-full transition-colors duration-100 ${classes}`}
           style={{
@@ -126,23 +173,6 @@ export const UserMenu = ({ light, height }: Props) => {
                 light={light}
               />
             )}
-            {/* destroyOnClose is so that popovers go away when the modal closes */}
-            <Modal
-              centered
-              open={modalOpen}
-              onCancel={() => setModalOpen(false)}
-              bodyStyle={{ marginInline: -1, padding: 0 }}
-              footer={null}
-              closable={false}
-              destroyOnClose
-            >
-              <div
-                className='rounded-lg'
-                style={{ backgroundColor: 'rgb(37 44 59)' }}
-              >
-                <AchievementsPage />
-              </div>
-            </Modal>
           </>
         </button>
       </Badge>

@@ -23,10 +23,6 @@ const AchievementsPage = () => {
       selectedAchievement.state = 'unlocked';
       saveAchievement(selectedAchievement);
     }
-    // if (achievement && achievement.state === 'newly_unlocked') {
-    //   achievement.state = 'unlocked';
-    //   saveAchievement(achievement);
-    // }
     setSelectedAchievement(achievement);
   };
 

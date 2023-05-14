@@ -28,8 +28,8 @@ const AchievementPopover = ({ children, achievement, open }: Props) => {
           )}
         </div>
       )}
-      <span className='mb-[4px] text-2xl font-bold text-white'>
-        {achievement.title}
+      <span className='mb-[2px] text-2xl font-bold text-white'>
+        {achievement.unlockedAt ? achievement.title : '???'}
       </span>
       <span className='text-white'>{achievement.description}</span>
     </div>

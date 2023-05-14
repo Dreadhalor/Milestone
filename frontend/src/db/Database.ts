@@ -1,4 +1,8 @@
-import { BaseAchievement, UserAchievement } from '@src/types';
+import {
+  BaseAchievement,
+  UserAchievement,
+  UserPreferencesData,
+} from '@src/types';
 
 export interface Database {
   fetchGameAchievements: (game_id: string) => Promise<BaseAchievement[]>;
@@ -17,4 +21,13 @@ export interface Database {
     game_id: string,
     callback: (achievements: BaseAchievement[]) => void
   ) => () => void;
+
+  subscribeToUserPreferences: (
+    user_id: string,
+    callback: (preferences: UserPreferencesData) => void
+  ) => () => void;
+  saveUserPreferences: (
+    user_id: string,
+    preferences: Partial<UserPreferencesData>
+  ) => Promise<void>;
 }

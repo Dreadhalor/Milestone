@@ -1,10 +1,16 @@
-import React, { createContext, useState, useEffect } from 'react';
-import { UserAchievement, BaseAchievement, Achievement } from '@src/types';
+import React, { createContext, useState, useEffect, useRef } from 'react';
+import {
+  UserAchievement,
+  BaseAchievement,
+  Achievement,
+  UserPreferencesData,
+} from '@src/types';
 import { useDB } from '@hooks/useDB';
 import { useAuth } from '@hooks/useAuth';
 import { Timestamp } from 'firebase/firestore';
-import { notification } from 'antd';
+import { Modal, notification } from 'antd';
 import { GiLaurelCrown } from 'react-icons/gi';
+import AchievementsPage from '@components/AchievementsPage';
 
 interface AchievementsContextValue {
   gameAchievements: BaseAchievement[];
@@ -13,6 +19,13 @@ interface AchievementsContextValue {
   unlockAchievement: (achievement: Achievement) => Promise<void>;
   saveAchievement: (achievement: Achievement) => Promise<void>;
   toggleAchievement: (achievement: Achievement) => Promise<void>;
+  modalOpen: boolean;
+  setModalOpen: (open: boolean) => void;
+  userMenuRef: React.RefObject<HTMLButtonElement>;
+  userPreferences: UserPreferencesData;
+  editUserPreferences: (
+    preferences: Partial<UserPreferencesData>
+  ) => Promise<void>;
 }
 
 export const AchievementsContext = createContext<AchievementsContextValue>(
@@ -34,8 +47,24 @@ export const AchievementsProvider = ({ children }: Props) => {
     []
   );
   const [achievements, setAchievements] = useState<Achievement[]>([]);
+  const [userPreferences, setUserPreferences] = useState<UserPreferencesData>({
+    showNotifications: true,
+    showBadges: true,
+  });
+
+  const editUserPreferences = async (
+    preferences: Partial<UserPreferencesData>
+  ) => {
+    if (!userId) return;
+
+    await db.saveUserPreferences(userId, {
+      ...userPreferences,
+      ...preferences,
+    });
+  };
 
   // subscribe to game and user achievements
+  // also user preferences because I didn't want to create a new provider
   useEffect(() => {
     const gameUnsubscribe = db.subscribeToGameAchievements(
       'fallcrate',
@@ -45,10 +74,15 @@ export const AchievementsProvider = ({ children }: Props) => {
       userId as string,
       setUserAchievements
     );
+    const userPreferencesUnsubscribe = db.subscribeToUserPreferences(
+      userId as string,
+      setUserPreferences
+    );
 
     return () => {
       gameUnsubscribe && gameUnsubscribe();
       userUnsubscribe && userUnsubscribe();
+      userPreferencesUnsubscribe && userPreferencesUnsubscribe();
     };
   }, [userId]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -81,7 +115,8 @@ export const AchievementsProvider = ({ children }: Props) => {
     if (state === 'unlocked' && userAchievement.state === 'locked') {
       userAchievement.state = 'newly_unlocked';
       userAchievement.unlockedAt = Timestamp.now();
-      openNotification(achievement.title, achievement.description);
+      if (userPreferences.showNotifications)
+        openNotification(achievement.title, achievement.description);
     }
 
     state === 'unlocked'
@@ -201,19 +236,29 @@ export const AchievementsProvider = ({ children }: Props) => {
     [] // eslint-disable-line react-hooks/exhaustive-deps
   );
 
+  const [modalOpen, setModalOpen] = useState(false);
+
   const [api, contextHolder] = notification.useNotification();
 
   const openNotification = (
     message = 'Achievement Unlocked',
-    description = 'hi'
+    description = ''
   ) => {
     api.open({
       message,
       description,
       icon: <GiLaurelCrown />,
       placement: 'bottomRight',
+      onClick: () => {
+        setModalOpen(true);
+        api.destroy();
+      },
     });
   };
+
+  const userMenuRef = useRef<HTMLButtonElement>(null);
+  const userMenuBoundingRect = userMenuRef.current?.getBoundingClientRect();
+  const { x, y } = userMenuBoundingRect ?? { x: 0, y: 0 };
 
   return (
     <AchievementsContext.Provider
@@ -224,10 +269,32 @@ export const AchievementsProvider = ({ children }: Props) => {
         unlockAchievement,
         saveAchievement,
         toggleAchievement,
+        modalOpen,
+        setModalOpen,
+        userMenuRef,
+        userPreferences,
+        editUserPreferences,
       }}
     >
       {contextHolder}
       {children}
+      <Modal
+        centered
+        open={modalOpen}
+        onCancel={() => setModalOpen(false)}
+        bodyStyle={{ marginInline: -1, padding: 0 }} // remove padding
+        footer={null} // no footer
+        closable={false} // no close button
+        mousePosition={userMenuRef.current ? { x, y } : null} // open animation origin
+        destroyOnClose // destroy popovers when modal closes
+      >
+        <div
+          className='rounded-lg'
+          style={{ backgroundColor: 'rgb(37 44 59)' }}
+        >
+          <AchievementsPage />
+        </div>
+      </Modal>
     </AchievementsContext.Provider>
   );
 };

@@ -1,4 +1,8 @@
-import { BaseAchievement, UserAchievement } from '@src/types';
+import {
+  BaseAchievement,
+  UserAchievement,
+  UserPreferencesData,
+} from '@src/types';
 import { Database } from './Database';
 import {
   getUserAchievementPrimaryKey,
@@ -92,6 +96,18 @@ const useJsonServerDB = (): Database => {
       console.log('subscribing to user achievements', user_id, callback);
     };
 
+  const saveUserPreferences = async (
+    user_id: string,
+    preferences: Partial<UserPreferencesData>
+  ): Promise<void> => {
+    console.log('setting user preferences', user_id, preferences);
+  };
+  const subscribeToUserPreferences =
+    (user_id: string, callback: (preferences: UserPreferencesData) => void) =>
+    () => {
+      console.log('subscribing to user preferences', user_id, callback);
+    };
+
   return {
     fetchGameAchievements,
     fetchUserAchievements,
@@ -99,6 +115,8 @@ const useJsonServerDB = (): Database => {
     deleteAchievement,
     subscribeToGameAchievements,
     subscribeToUserAchievements,
+    saveUserPreferences,
+    subscribeToUserPreferences,
   };
 };
 

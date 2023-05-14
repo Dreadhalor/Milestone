@@ -27,6 +27,14 @@ interface UserAchievement extends UserAchievementData {
 
 interface Achievement extends BaseAchievement, UserAchievement {}
 
+interface UserPreferencesData {
+  showNotifications: boolean | undefined;
+  showBadges: boolean | undefined;
+}
+interface UserPreferences {
+  preferences: UserPreferencesData;
+}
+
 export type {
   BaseAchievementData,
   BaseAchievement,
@@ -34,4 +42,6 @@ export type {
   UserAchievement,
   Achievement,
   GameAchievements,
+  UserPreferences,
+  UserPreferencesData,
 };

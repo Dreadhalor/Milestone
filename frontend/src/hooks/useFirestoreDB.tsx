@@ -16,6 +16,8 @@ import {
   BaseAchievementData,
   UserAchievementData,
   UserAchievement,
+  UserPreferences,
+  UserPreferencesData,
 } from '@src/types';
 import { Database } from '@src/db/Database';
 import { getApp, getApps, initializeApp } from 'firebase/app';
@@ -140,6 +142,31 @@ const useFirestoreDB = (): Database => {
     });
   };
 
+  // given a partial UserPreferences object, save it to the database
+  const saveUserPreferences = async (
+    userId: string,
+    preferences: Partial<UserPreferencesData>
+  ): Promise<void> => {
+    await setDoc(doc(db, `users/${userId}/games/fallcrate`), { preferences });
+  };
+
+  const subscribeToUserPreferences = (
+    userId: string,
+    callback: (preferences: UserPreferencesData) => void
+  ): (() => void) => {
+    if (!userId) return () => {}; // eslint-disable-line @typescript-eslint/no-empty-function
+
+    const userDoc = doc(db, `users/${userId}/games/fallcrate`);
+
+    return onSnapshot(userDoc, (doc) => {
+      const userData = doc.data() as UserPreferences;
+      const { showNotifications = true, showBadges = true } =
+        userData?.preferences || {};
+      const sanitizedPreferences = { showNotifications, showBadges };
+      callback(sanitizedPreferences);
+    });
+  };
+
   return {
     fetchGameAchievements,
     fetchUserAchievements,
@@ -147,6 +174,8 @@ const useFirestoreDB = (): Database => {
     deleteAchievement,
     subscribeToGameAchievements,
     subscribeToUserAchievements,
+    saveUserPreferences,
+    subscribeToUserPreferences,
   };
 };
 
