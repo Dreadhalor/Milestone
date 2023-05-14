@@ -11,25 +11,34 @@ import { App as AntApp } from 'antd';
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <AuthProvider>
-      <AchievementsProvider>
-        <ConfigProvider
-          theme={{
-            components: {
-              Dropdown: {
-                colorBgElevated: '#383838',
-                controlItemBgHover: '#484848',
-              },
-              Modal: {
-                wireframe: true,
-              },
+      <ConfigProvider
+        theme={{
+          components: {
+            Dropdown: {
+              colorBgElevated: '#383838',
+              controlItemBgHover: '#484848',
             },
-          }}
-        >
+            Modal: {
+              wireframe: true,
+            },
+            Notification: {
+              colorTextHeading: '#fff',
+              colorText: '#fff',
+              colorBgElevated: 'rgb(17,24,39)',
+              colorIcon: '#fff',
+              colorIconHover: '#aaa',
+              fontSizeLG: 24,
+              fontWeightStrong: 700,
+            },
+          },
+        }}
+      >
+        <AchievementsProvider>
           <AntApp>
             <App />
           </AntApp>
-        </ConfigProvider>
-      </AchievementsProvider>
+        </AchievementsProvider>
+      </ConfigProvider>
     </AuthProvider>
   </React.StrictMode>
 );

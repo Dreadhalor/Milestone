@@ -3,6 +3,8 @@ import { UserAchievement, BaseAchievement, Achievement } from '@src/types';
 import { useDB } from '@hooks/useDB';
 import { useAuth } from '@hooks/useAuth';
 import { Timestamp } from 'firebase/firestore';
+import { notification } from 'antd';
+import { GiLaurelCrown } from 'react-icons/gi';
 
 interface AchievementsContextValue {
   gameAchievements: BaseAchievement[];
@@ -76,9 +78,10 @@ export const AchievementsProvider = ({ children }: Props) => {
     if (!userId) return;
 
     const userAchievement = extractUserAchievement(achievement);
-    if (state === 'unlocked') {
+    if (state === 'unlocked' && userAchievement.state === 'locked') {
       userAchievement.state = 'newly_unlocked';
       userAchievement.unlockedAt = Timestamp.now();
+      openNotification(achievement.title, achievement.description);
     }
 
     state === 'unlocked'
@@ -198,6 +201,20 @@ export const AchievementsProvider = ({ children }: Props) => {
     [] // eslint-disable-line react-hooks/exhaustive-deps
   );
 
+  const [api, contextHolder] = notification.useNotification();
+
+  const openNotification = (
+    message = 'Achievement Unlocked',
+    description = 'hi'
+  ) => {
+    api.open({
+      message,
+      description,
+      icon: <GiLaurelCrown />,
+      placement: 'bottomRight',
+    });
+  };
+
   return (
     <AchievementsContext.Provider
       value={{
@@ -209,6 +226,7 @@ export const AchievementsProvider = ({ children }: Props) => {
         toggleAchievement,
       }}
     >
+      {contextHolder}
       {children}
     </AchievementsContext.Provider>
   );
