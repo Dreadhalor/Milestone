@@ -5,7 +5,7 @@ function App() {
   return (
     <div className='flex h-full flex-col'>
       <Navbar />
-      <AchievementsPage />
+      {/* <AchievementsPage /> */}
     </div>
   );
 }
