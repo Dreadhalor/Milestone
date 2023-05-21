@@ -6,7 +6,7 @@ import { useAuth } from '@hooks/useAuth';
 import { hasUnlockedNeighbors } from './AchievementSquare/achievementSquareUtils';
 
 const AchievementsPage = () => {
-  const { loading, userId } = useAuth();
+  const { loading, uid } = useAuth();
   const [selectedAchievement, setSelectedAchievement] =
     useState<Achievement | null>(null);
 
@@ -35,6 +35,17 @@ const AchievementsPage = () => {
     selectAchievement(null);
   }, [achievements]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  useEffect(() => {
+    // reset selected achievement when component unmounts
+    return () => {
+      if (!selectedAchievement) return;
+      if (selectedAchievement.state === 'newly_unlocked') {
+        selectedAchievement.state = 'unlocked';
+        saveAchievement(selectedAchievement);
+      }
+    };
+  }, [selectedAchievement]); // eslint-disable-line react-hooks/exhaustive-deps
+
   if (loading) return <div>Loading...</div>;
 
   return (
@@ -43,9 +54,9 @@ const AchievementsPage = () => {
       onClick={() => selectAchievement(null)}
     >
       <span className='mx-auto flex p-3 font-sans text-4xl'>
-        Dreadhalor's Treasure Hunt
+        Fallcrate's Treasure Hunt
       </span>
-      {userId && (
+      {uid && (
         <div className='relative overflow-auto'>
           <AchievementsGrid
             selectedAchievement={selectedAchievement}

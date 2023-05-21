@@ -16,8 +16,8 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
-interface AuthContextValue {
-  userId: string | null;
+export interface AuthContextValue {
+  uid: string | null;
   signedIn: boolean;
   loading: boolean;
   signInWithGoogle: () => Promise<void>;
@@ -33,7 +33,7 @@ interface Props {
 }
 
 export const AuthProvider = ({ children }: Props) => {
-  const [userId, setUserId] = useState<string | null>(null);
+  const [uid, setUid] = useState<string | null>(null); // to prevent a Firebase error on init with ''
   const [signedIn, setSignedIn] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -50,17 +50,17 @@ export const AuthProvider = ({ children }: Props) => {
 
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        setUserId(authUser.uid);
+        setUid(authUser.uid);
         setSignedIn(true);
         setLoading(false);
       } else {
-        const localUserId = localStorage.getItem('localUserId');
-        if (localUserId) {
-          setUserId(localUserId);
+        const localUid = localStorage.getItem('localUid');
+        if (localUid) {
+          setUid(localUid);
         } else {
           const id = uuidv4();
-          localStorage.setItem('localUserId', id);
-          setUserId(id);
+          localStorage.setItem('localUid', id);
+          setUid(id);
         }
         setSignedIn(false);
         setLoading(false);
@@ -79,11 +79,12 @@ export const AuthProvider = ({ children }: Props) => {
         // RUN THE FUNCTION TO LINK THE LOCAL ACCOUNT TO THE FIREBASE ACCOUNT
         // THEN WIPE THE LOCAL ACCOUNT
         const event = new CustomEvent('mergeAccounts', {
-          detail: { localUserId: userId, remoteUserId: result.user.uid },
+          detail: { localUid: uid, remoteUid: result.user.uid },
         });
         window.dispatchEvent(event);
-        // localStorage.removeItem('localUserId');
-        setUserId(result.user.uid);
+        // don't delete the local uid because it stops a new uid being created on logout
+        // literally just way easier to debug if something goes wrong
+        setUid(result.user.uid);
         setSignedIn(true);
       }
     } catch (error) {
@@ -102,7 +103,7 @@ export const AuthProvider = ({ children }: Props) => {
   return (
     <AuthContext.Provider
       value={{
-        userId,
+        uid: uid,
         signedIn,
         loading,
         signInWithGoogle,

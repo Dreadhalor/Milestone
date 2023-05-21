@@ -43,13 +43,13 @@ if (location.hostname === 'localhost') {
 
 const convertDBUserAchievement = (
   doc: QueryDocumentSnapshot<DocumentData>,
-  userId: string
+  uid: string
 ) => {
   const data = doc.data() as UserAchievementData;
   return {
     id: doc.id,
     gameId: 'fallcrate',
-    userId,
+    uid,
     ...data,
   };
 };
@@ -72,26 +72,24 @@ const useFirestoreDB = (): Database => {
   };
 
   const fetchUserAchievements = async (
-    userId: string | null
+    uid: string | null
   ): Promise<UserAchievement[]> => {
-    if (!userId) return Promise.resolve([]);
+    if (!uid) return Promise.resolve([]);
     const achievementsCollection = collection(
       db,
-      `users/${userId}/games/fallcrate/achievements`
+      `users/${uid}/games/fallcrate/achievements`
     );
     const querySnapshot = await getDocs(achievementsCollection);
-    return querySnapshot.docs.map((doc) =>
-      convertDBUserAchievement(doc, userId)
-    );
+    return querySnapshot.docs.map((doc) => convertDBUserAchievement(doc, uid));
   };
 
   const saveAchievement = async (
     achievement: UserAchievement
   ): Promise<UserAchievement> => {
-    const { id, gameId, userId, state, unlockedAt } = achievement;
+    const { id, gameId, uid, state, unlockedAt } = achievement;
     const dbAchievement: UserAchievementData = { state, unlockedAt };
     await setDoc(
-      doc(db, `users/${userId}/games/${gameId}/achievements/${id}`),
+      doc(db, `users/${uid}/games/${gameId}/achievements/${id}`),
       dbAchievement
     );
     return achievement;
@@ -124,19 +122,19 @@ const useFirestoreDB = (): Database => {
   };
 
   const subscribeToUserAchievements = (
-    userId: string,
+    uid: string | null,
     callback: (achievements: UserAchievement[]) => void
   ): (() => void) => {
-    if (!userId) return () => {}; // eslint-disable-line @typescript-eslint/no-empty-function
+    if (!uid) return () => {}; // eslint-disable-line @typescript-eslint/no-empty-function
 
     const achievementsCollection = collection(
       db,
-      `users/${userId}/games/fallcrate/achievements`
+      `users/${uid}/games/fallcrate/achievements`
     );
 
     return onSnapshot(achievementsCollection, (querySnapshot) => {
       const achievements = querySnapshot.docs.map((doc) =>
-        convertDBUserAchievement(doc, userId)
+        convertDBUserAchievement(doc, uid)
       );
       callback(achievements);
     });
@@ -144,19 +142,19 @@ const useFirestoreDB = (): Database => {
 
   // given a partial UserPreferences object, save it to the database
   const saveUserPreferences = async (
-    userId: string,
+    uid: string,
     preferences: Partial<UserPreferencesData>
   ): Promise<void> => {
-    await setDoc(doc(db, `users/${userId}/games/fallcrate`), { preferences });
+    await setDoc(doc(db, `users/${uid}/games/fallcrate`), { preferences });
   };
 
   const subscribeToUserPreferences = (
-    userId: string,
+    uid: string | null,
     callback: (preferences: UserPreferencesData) => void
   ): (() => void) => {
-    if (!userId) return () => {}; // eslint-disable-line @typescript-eslint/no-empty-function
+    if (!uid) return () => {}; // eslint-disable-line @typescript-eslint/no-empty-function
 
-    const userDoc = doc(db, `users/${userId}/games/fallcrate`);
+    const userDoc = doc(db, `users/${uid}/games/fallcrate`);
 
     return onSnapshot(userDoc, (doc) => {
       const userData = doc.data() as UserPreferences;

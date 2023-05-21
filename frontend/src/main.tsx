@@ -46,5 +46,5 @@ const remoteSetup = (
 );
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>{remoteSetup}</React.StrictMode>
+  <React.StrictMode>{localSetup}</React.StrictMode>
 );

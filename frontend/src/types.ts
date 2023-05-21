@@ -22,10 +22,10 @@ interface UserAchievementData {
 interface UserAchievement extends UserAchievementData {
   id: string;
   gameId: string;
-  userId: string;
+  uid: string;
 }
 
-interface Achievement extends BaseAchievement, UserAchievement {}
+interface Achievement extends BaseAchievement, UserAchievement { }
 
 interface UserPreferencesData {
   showNotifications: boolean | undefined;
